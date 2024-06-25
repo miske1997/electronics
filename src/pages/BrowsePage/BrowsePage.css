@@ -1,0 +1,23 @@
+.browse-page-main{
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+
+
+.articles-grid-controlls{
+ width: 100%;   
+}
+
+
+.categorys{
+    width: 25%;
+    margin-left: 2.5%;
+}
+
+@media (max-width: 576px){
+    
+    .categorys {
+        display: none;
+    }
+}

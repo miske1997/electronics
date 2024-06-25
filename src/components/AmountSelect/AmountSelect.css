@@ -1,0 +1,22 @@
+.amount-select{
+    width: 2rem;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 40%;
+    width: min-content;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.amount-select>.icon{
+    padding: 0.5rem;
+   
+}
+
+.amount-select>.input{
+    width: 2rem;
+    height: 1rem;
+    direction: unset;
+}

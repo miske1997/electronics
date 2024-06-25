@@ -1,0 +1,32 @@
+.article-top{
+    /* height: 40rem; */
+    margin-top: 10rem;
+}
+
+
+.article-image-con{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-image-con img{
+    width: 100%;
+}
+.article-tabs{
+    padding-top: 5rem;
+}
+
+.article-description{
+    text-align: left;
+    padding-top: 3rem;
+    padding-left: 2rem;
+    padding-right: 4rem;
+}
+
+@media (min-width: 768px){
+    
+    .article-description {
+        padding-top: 1rem;
+    }
+}

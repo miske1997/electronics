@@ -1,0 +1,118 @@
+{
+    "general": {
+        "categoryes": {
+            "psovke": [
+                "sunem",
+                "munem",
+                "oprem",
+                "cukam"
+            ],
+            "izreke": [
+                "sunem",
+                "munem",
+                "opream",
+                "cukam"
+            ],
+            "imenice": [
+                "sunem",
+                "munem",
+                "opreem",
+                "cukam"
+            ],
+            "padezi": [
+                "sunem",
+                "munem nominativ genetiv akuzativ deminativ opremnativ munemnativ",
+                "oprem",
+                "cukam"
+            ]
+        }
+    },
+    "categories": [
+        {
+            "id": "munem",
+            "filters": [
+                {
+                    "id": "type",
+                    "options": ["sodim", "smd"]
+                }
+
+            ],
+            "articles": [
+                {
+                    "id": 1,
+                    "title": "EEProm 2236b",
+                    "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+                    "description": "",
+                    "specification": "",
+                    "cost": 50,
+                    "buys": 5,
+                    "type" : "sodim"
+                },
+                {
+                    "id": 2,
+                    "title": "Multiplex 2x3",
+                    "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+                    "description": "",
+                    "specification": "",
+                    "cost": 250,
+                    "buys": 7,
+                    "type" : "sodim"
+                },
+                {
+                    "id": 3,
+                    "title": "intel 8086",
+                    "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+                    "description": "",
+                    "specification": "",
+                    "cost": 500,
+                    "buys": 2,
+                    "type" : "smd"
+                },
+                {
+                    "id": 4,
+                    "title": "Brojac A534",
+                    "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+                    "description": "",
+                    "specification": "",
+                    "cost": 20,
+                    "buys": 53
+                    
+                }
+            ]
+        }
+    ],
+    "articles": [
+        {
+            "id": 1,
+            "title": "EEProm 2236b",
+            "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+            "description": "",
+            "specification": "",
+            "cost": 50
+        },
+        {
+            "id": 2,
+            "title": "Multiplex 2x3",
+            "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+            "description": "",
+            "specification": "",
+            "cost": 250
+        },
+        {
+            "id": 3,
+            "title": "intel 8086",
+            "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+            "description": "",
+            "specification": "",
+            "cost": 500
+        },
+        {
+            "id": 4,
+            "title": "Brojac A534",
+            "text": "dad sadf fgfgsf asdrg ku sdfr ghf",
+            "description": "",
+            "specification": "",
+            "cost": 20
+        }
+    ]
+}
