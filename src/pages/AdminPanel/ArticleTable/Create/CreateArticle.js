@@ -64,10 +64,10 @@ function CreateArticleModal({article = null, show = false, onClose = () => {}, o
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formCost">
                     <Form.Label>Cost</Form.Label>
-                    <Form.Control defaultValue={article !== null ? article.cost : 0} type="number" placeholder="0" />
+                    <Form.Control defaultValue={article !== null ? article.cost : ""} type="number" placeholder="0" />
                 </Form.Group>
-                <button ref={submitBtnRef} style={{display: "none"}} variant="primary" type="submit"/>
                 {RenderFilterFields()}
+                <button ref={submitBtnRef} style={{display: "none"}} variant="primary" type="submit"/>
             </Form>
         </Modal.Body>
         <Modal.Footer>

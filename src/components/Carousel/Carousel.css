@@ -1,0 +1,49 @@
+.carousel-main-div {
+    position: relative;
+    display: flex;
+    width: 90%;
+    overflow: hidden;
+    align-items: center;
+    padding-block: 2rem;
+}
+
+.button-left,
+.button-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.button-left {
+    left: 0;
+}
+
+.button-right {
+    right: 0;
+}
+.button-png {
+    height: 1rem;
+    width: auto;
+}
+
+.carousel-initialized-slides-div {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    min-width: max-content;
+    transition: 0.15s transform ease-in;
+    gap: 1rem;
+}
+
+.carousel-slide-div {
+    min-width: 30vw;
+    max-width: 30vw;
+    height: auto;
+    max-height: inherit;
+}

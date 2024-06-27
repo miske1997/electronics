@@ -2,12 +2,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ArticleGrid from '../../components/ArticleGrid/ArticleGrid';
 import CategorySelect from '../../components/CategorySelect/CategorySelect';
 import "./BrowsePage.css"
-import { Stack } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import CustomToggle from '../../components/CustomToggle/CustomeToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from '../../store/slices/generalSlice';
 import { fetchGeneralData } from '../../store/effects/generalDataEffects';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { filterByNameAsc, filterByNameDesc, filterByPopularity, filterByPriceAsc, filterByPriceDesc, selectArticles, selectFilters } from '../../store/slices/categorySlice';
 import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
 import FilterSelect from '../../components/FilterSelect/FilterSelect';
@@ -23,6 +23,7 @@ const filterMap = [
 ]
 
 function BrowsePage() {
+    const [showFilters, setShowFilters] = useState(false)
     const categories = useSelector(selectCategories)
     const filters = useSelector(selectFilters)
     const articlesList = useSelector(selectArticles)
@@ -36,6 +37,7 @@ function BrowsePage() {
     useEffect(() => {
         dispatch(fetchGeneralData())
         dispatch(fetchCategoryArticlesById(categoryId))
+        dispatch(fetchFiltersForCategory(categoryId))
     }, [categoryId]);
 
     function OnArticleClick(article) {
@@ -56,7 +58,7 @@ function BrowsePage() {
 
     function RenderFilters(){
         return filters.map(filter => {
-            return (<FilterSelect  options={filter.options} paramName={filter.name}></FilterSelect>)
+            return (<FilterSelect filterName={filter.name}  options={filter.options} paramName={filter.propName}></FilterSelect>)
         })
     }
 
@@ -67,13 +69,14 @@ function BrowsePage() {
                 <CategorySelect onCategoryClick={OnCategoryClick} activeCategory={categoryId} categories={categories}></CategorySelect>
             </div>
             <div className='articles-grid-controlls'>
-                <Stack direction="horizontal" style={{ paddingInline: '10%' }} gap={3}>
-                    <div className='p-2 ms-auto'>
-                        {RenderFilters()}
-                        <CustomToggle onValueChanged={OnFilterSelect}></CustomToggle>
-                    </div>
-                </Stack>
-
+                <div className='controlles'>
+                    <Button onClick={() => setShowFilters(show => !show)}>Filters</Button>
+                    <div style={{flexGrow: '1'}}></div>
+                    <CustomToggle onValueChanged={OnFilterSelect}></CustomToggle>
+                </div>
+                {showFilters === true ? (<div className='filters-con'>
+                    {RenderFilters()}
+                </div>) : ""}
                 <ArticleGrid articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList}></ArticleGrid>
             </div>
         </main>

@@ -19,7 +19,7 @@ function ArticleGrid({articlesInCart = [], onArticleClick = () => {}, articleLis
     function RenderRow(articleSubList) {
         return articleSubList.map(article => {
             return (
-                <Col  xs={{span: 8}} sm={{span: 8}} md={{span: 4}} xl={{span: 2}}>
+                <Col  xs={{span: 8}} sm={{span: 8}} md={{span: 4}} xl={{span: 3}}>
                     <ArticleCard articleInCart={IsArticleInCart(article)} onClick={onArticleClick} article={article} imageSrc={article.imageSrc} ></ArticleCard>
                 </Col>
             )

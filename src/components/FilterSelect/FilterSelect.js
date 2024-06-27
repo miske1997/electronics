@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { removeFilter, setFilter } from '../../store/slices/categorySlice';
 
-const FilterSelect = ({onValueChanged = () => {}, options = [], paramName = "" }) =>{
+const FilterSelect = ({onValueChanged = () => {}, filterName = 'Filter', options = [], paramName = "" }) =>{
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const url = new URL(window.location);
@@ -39,9 +39,9 @@ const FilterSelect = ({onValueChanged = () => {}, options = [], paramName = "" }
   }
 
   return (
-    <DropdownButton id="dropdown-basic-button" title={
+    <DropdownButton color='secondary' className='filter-select' id="dropdown-basic-button" title={
         <span>
-          Filter {`: ${filterCurrent}`} <FontAwesomeIcon icon={faFilter} />
+          {`${filterName} : ${filterCurrent}`} <FontAwesomeIcon icon={faFilter} />
         </span>
       }>
       <Dropdown.Item onClick={(event) => {event.preventDefault(); RemoveParam()}}>None</Dropdown.Item>

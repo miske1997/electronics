@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import {Outlet, useNavigate} from 'react-router-dom';
+import "./NavBar.css"
 
 function NavBar() {
 
@@ -19,9 +20,9 @@ function NavBar() {
 
     return (
         <>
-        <Navbar expand="md" bg='dark' data-bs-theme="dark" className="bg-body-tertiary ">
+        <Navbar sticky='top' expand="md" bg='dark' data-bs-theme="dark" className="bg-body-tertiary navbar-main ">
             <Container fluid>
-                <Navbar.Brand href="/home">Anika Panika</Navbar.Brand>
+                <Navbar.Brand style={{fontSize: "inherit"}} href="/">Anika Panika</Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
                 <Navbar.Offcanvas
                     id={`offcanvasNavbar-expand-md`}
@@ -35,9 +36,9 @@ function NavBar() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                            <Nav.Link onClick={() => GoTo("/home")}>Home</Nav.Link>
+                            <Nav.Link onClick={() => GoTo("/")}>Home</Nav.Link>
                             <Nav.Link onClick={() => GoTo("/browse")}>Products</Nav.Link>
-                            <Nav.Link onClick={() => GoTo("/browse")}>About Us</Nav.Link>
+                            <Nav.Link onClick={() => GoTo("/about")}>About Us</Nav.Link>
                             <NavDropdown
                                 title="Dropdown"
                                 id={`offcanvasNavbarDropdown-expand-md`}

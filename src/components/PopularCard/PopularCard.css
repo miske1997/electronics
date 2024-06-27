@@ -1,0 +1,57 @@
+.popular-card{
+    transition: box-shadow 0.3s ease-out;
+    text-align: left;
+    position: relative;
+    min-height: 320px;
+    min-width: 330px;
+}
+.popular-card:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.card-info{
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-info>div{
+    background-color: rgba(128, 128, 128, 0.168);
+    padding-inline: 0.3rem;
+    padding-right: 0.7rem;
+}
+
+.article-cost{
+    font-size: large;
+    font-weight: 500;
+    margin: auto;
+}
+
+.article-cart{
+    margin-inline: 0.5rem;
+    
+}
+
+.article-cart:hover{
+    color: rgb(186, 186, 132);
+}
+
+.in-cart-icon{
+    position: absolute;
+    right: -1rem;
+    top: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.359);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.in-cart-icon .icon{
+    padding-block: 0.3rem;
+    padding-left: 1rem;
+    padding-right: 0.2rem;
+    color: rgb(40, 40, 40);
+}

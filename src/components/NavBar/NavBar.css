@@ -1,0 +1,12 @@
+.navbar-main{
+    height: 5rem;
+    font-size: 1.5rem;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .navbar-main{
+        height: auto;
+        font-size: 1rem;
+    }
+}

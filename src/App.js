@@ -8,6 +8,7 @@ import NavBar from './components/NavBar/NavBar';
 import CategoryPage from './pages/AdminPanel/CategoryTabel/CategoryPanel';
 import ArticleTable from './pages/AdminPanel/ArticleTable/ArticlePanel';
 import OrdersTable from './pages/AdminPanel/OrdersTable/OrdersPanel';
+import AboutPage from './pages/AboutUsPage/AboutPage';
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
             <Route path="browse/:categoryId/*" element={<BrowsePage />} ></Route>
             <Route path="browse"  element={<BrowsePage />} ></Route>
             <Route path="cart" element={<CartPage/>}></Route>
+            <Route path="about" element={<AboutPage/>}></Route>
           </Route>  
           <Route path="/admin" element={<CategoryPage/>}></Route>
           <Route path="/admin/:categoryId" element={<ArticleTable/>}></Route>

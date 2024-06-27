@@ -1,0 +1,8 @@
+.about-page{
+    overflow-x: hidden;
+}
+
+.img-to-mask{
+    mask: url("../../../public/blob.svg");
+    mask-repeat: no-repeat;
+}
