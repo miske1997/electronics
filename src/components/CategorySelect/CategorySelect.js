@@ -43,9 +43,9 @@ function CategorySelect({onCategoryClick = () => {}, categories = [], activeCate
             )
         })
     }
-    console.log(categories);
+
     return (
-        <Accordion defaultActiveKey={GetActiveCategoryIndex()}>
+        <Accordion className="category-select" defaultActiveKey={GetActiveCategoryIndex()}>
             {RenderAllCategories()}
         </Accordion>
     );

@@ -7,15 +7,42 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import {Outlet, useNavigate} from 'react-router-dom';
+import {Outlet, useNavigate, useParams} from 'react-router-dom';
 import "./NavBar.css"
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCategories } from '../../store/slices/generalSlice';
+import { fetchGeneralData } from '../../store/effects/generalDataEffects';
+import CategorySelect from '../CategorySelect/CategorySelect';
+import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
 
 function NavBar() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const productsDropdownRef = useRef();
+    const categories = useSelector(selectCategories);
+    let { categoryId } = useParams("categoryId");
 
     function GoTo(url){
-        navigate(url)
+        navigate(url);
+    }
+
+    useEffect(() => {
+        dispatch(fetchGeneralData())
+    }, []);
+
+    function RenderProducts(){
+        return categories.map(category => {
+            return (<NavDropdown.Item >{category.name}</NavDropdown.Item>)
+        })
+    }
+
+    function OnCategoryClick(categorieRef) {
+        dispatch(fetchCategoryArticlesById(categorieRef))
+        dispatch(fetchFiltersForCategory(categorieRef))
+        navigate("/browse/" + categorieRef ?? '')
+        productsDropdownRef.current.click()
     }
 
     return (
@@ -37,21 +64,15 @@ function NavBar() {
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
                             <Nav.Link onClick={() => GoTo("/")}>Home</Nav.Link>
-                            <Nav.Link onClick={() => GoTo("/browse")}>Products</Nav.Link>
-                            <Nav.Link onClick={() => GoTo("/about")}>About Us</Nav.Link>
                             <NavDropdown
-                                title="Dropdown"
+                                ref={productsDropdownRef}
+                                title="Products"
                                 id={`offcanvasNavbarDropdown-expand-md`}
                             >
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">
-                                    Another action
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
+                                <CategorySelect onCategoryClick={OnCategoryClick} activeCategory={categoryId} categories={categories}></CategorySelect>
+                                {/* {RenderProducts()} */}
                             </NavDropdown>
+                            <Nav.Link onClick={() => GoTo("/about")}>About Us</Nav.Link>
                             <Form className="d-flex">
                                 <Form.Control
                                     type="search"

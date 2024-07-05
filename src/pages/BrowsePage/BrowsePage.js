@@ -13,6 +13,7 @@ import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/
 import FilterSelect from '../../components/FilterSelect/FilterSelect';
 import { setArticle } from '../../store/slices/articleSlice';
 import { selectArticlesInCart } from '../../store/slices/cartSlice';
+import TablePagination from '../../components/TablePagination/TablePagination';
 
 const filterMap = [
     filterByNameAsc,
@@ -32,6 +33,9 @@ function BrowsePage() {
     const dispatch = useDispatch()
 
     let { categoryId } = useParams("categoryId");
+    const currentPage = new URL(window.location).searchParams.get("page") ?? 1
+    const pageSize = 30
+
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -65,9 +69,9 @@ function BrowsePage() {
 
     return (
         <main className='browse-page-main'>
-            <div className='categorys'>
+            {/* <div className='categorys'>
                 <CategorySelect onCategoryClick={OnCategoryClick} activeCategory={categoryId} categories={categories}></CategorySelect>
-            </div>
+            </div> */}
             <div className='articles-grid-controlls'>
                 <div className='controlles'>
                     <Button onClick={() => setShowFilters(show => !show)}>Filters</Button>
@@ -77,7 +81,8 @@ function BrowsePage() {
                 {showFilters === true ? (<div className='filters-con'>
                     {RenderFilters()}
                 </div>) : ""}
-                <ArticleGrid articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList}></ArticleGrid>
+                <ArticleGrid articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList.slice((currentPage - 1) * pageSize, Math.min(articlesList.length, (currentPage - 1) * pageSize + pageSize))}></ArticleGrid>
+                <TablePagination currentPage={currentPage} numOfPages={Math.ceil(articlesList.length / pageSize)}></TablePagination>
             </div>
         </main>
     );

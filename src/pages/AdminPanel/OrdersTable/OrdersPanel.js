@@ -56,14 +56,6 @@ function OrdersTable() {
         <OrderModal onClose={handleClose} order={selectedOrder} show={show}></OrderModal>
         <Container>
         <Row className="header">
-            <Col lg={{span: 5, offset: 1}}>
-                <search></search>
-            </Col>
-            <Col lg={{span: 2, offset: 10}}>
-            <Button onClick={handleShow}>
-                    New <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-            </Button>
-            </Col>
         </Row>
         <Row lg={20}>
             <Col lg={{ span: 18, offset: 0}}>

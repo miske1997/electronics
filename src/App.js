@@ -9,6 +9,7 @@ import CategoryPage from './pages/AdminPanel/CategoryTabel/CategoryPanel';
 import ArticleTable from './pages/AdminPanel/ArticleTable/ArticlePanel';
 import OrdersTable from './pages/AdminPanel/OrdersTable/OrdersPanel';
 import AboutPage from './pages/AboutUsPage/AboutPage';
+import AdminNav from './pages/AdminPanel/AdminNav/AdminNav';
 
 function App() {
   
@@ -23,10 +24,13 @@ function App() {
             <Route path="browse"  element={<BrowsePage />} ></Route>
             <Route path="cart" element={<CartPage/>}></Route>
             <Route path="about" element={<AboutPage/>}></Route>
-          </Route>  
-          <Route path="/admin" element={<CategoryPage/>}></Route>
-          <Route path="/admin/:categoryId" element={<ArticleTable/>}></Route>
-          <Route path="/admin/orders" element={<OrdersTable/>}></Route>
+          </Route>
+
+          <Route path="/admin" element={<AdminNav/>}>
+            <Route index element={<CategoryPage/>}></Route>
+            <Route path=":categoryId" element={<ArticleTable/>}></Route>
+            <Route path="orders" element={<OrdersTable/>}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
      

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "./Carousel.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function sleep(time) {
   return new Promise((resolve) => {
@@ -19,7 +21,7 @@ function Carousel({children = [], minGap = 50, carouselItems = [] }) {
     const card = carouselRef.current.querySelector('.popular-card')
     const refWidth = carouselMainRef.current.clientWidth
     
-    const cardWidth = 330
+    const cardWidth = 330 + minGap
     
     const cardsInView = Math.floor(refWidth / cardWidth)
     const totalGap = refWidth - (cardsInView * cardWidth)
@@ -50,10 +52,10 @@ function Carousel({children = [], minGap = 50, carouselItems = [] }) {
 
     <div ref={carouselMainRef} className="carousel-main-div">
       <button onClick={moveLeft} className="button-left"  >
-        <img className="button-png" src="/resources/arrow-left.png" />
+        <FontAwesomeIcon icon={faChevronLeft} size="lg"></FontAwesomeIcon>
       </button>
       <button onClick={moveRight} className="button-right"  >
-        <img className="button-png" src="/resources/arrow-right.png" />
+        <FontAwesomeIcon icon={faChevronRight} size="lg"></FontAwesomeIcon>
       </button>
       <div ref={carouselRef} className="carousel-initialized-slides-div">
         {children}

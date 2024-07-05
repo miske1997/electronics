@@ -4,7 +4,7 @@ import { removeArticleFromCart, selectArticlesInCart } from "../../store/slices/
 import CartItem from "../../components/CartItem/CartItem";
 import BuyForm from "../../components/BuyForm/BuyForm";
 import { OrderArticles } from "../../services/articleService";
-
+import "./CartPage.css"
 
 function CartPage() {
     const articlesInCart = useSelector(selectArticlesInCart)
@@ -29,7 +29,13 @@ function CartPage() {
 
         })
     }
-
+    function CalculatePriceSum() {
+        let price = 0
+        articlesInCart.forEach(article => {
+            price += article.cost * article.amount
+        });
+        return price
+    }
     return (
         <Container className="p-5 p-sm-1 " >
 
@@ -41,6 +47,10 @@ function CartPage() {
                     <ListGroup className="gap-2  ">
                         {RenderArticles()}
                     </ListGroup>
+                    <div className="cost-sum-con">
+                        <p>Cena:</p>
+                        <p className="cost-sum">{`${CalculatePriceSum()} RSD`}</p>
+                    </div>
                 </Col>
                 {/*TODO try get data from local storage */}
 

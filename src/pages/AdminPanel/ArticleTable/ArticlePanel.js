@@ -1,10 +1,10 @@
 import "./ArticlePanel.css"
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Form, FormControl, Row, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { CreateArticle, DeleteArticle, GetAllArticlesForCategory, UpdateArticle } from "../../../services/articleService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faPlus, faSearch, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import CreateArticleModal from "./Create/CreateArticle";
 import { GetFiltersForCategory } from "../../../services/categoryService";
 
@@ -31,94 +31,105 @@ function ArticleTable() {
             setFilters(data)
         })
     }, []);
-    
-    function renderData(){
-        if (!articleData || articleData.length === 0){
+
+    function renderData() {
+        if (!articleData || articleData.length === 0) {
             return
         }
         return articleData.map((data, index) => (
-        <tr>
-            <td>{index}</td>
-            <td>{data.name}</td>
-            <td>{data.description}</td>
-            <td>{data.cost}</td>
-            <td>{data.type}</td>
-            <td>{data.buys}</td>
-            <td>
-                <Button onClick={() => onDeleteArticle(data.id)}> 
-                    <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
-                </Button>
-                <Button onClick={() => onEditArticle(data)}> 
-                    <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
-                </Button>
-            </td>
-        </tr>
+            <tr>
+                <td>{index}</td>
+                <td>{data.name}</td>
+                <td>{data.description}</td>
+                <td>{data.cost}</td>
+                <td>{data.type}</td>
+                <td>{data.buys}</td>
+                <td>
+                    <Button onClick={() => onDeleteArticle(data.id)}>
+                        <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+                    </Button>
+                    <Button onClick={() => onEditArticle(data)}>
+                        <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
+                    </Button>
+                </td>
+            </tr>
         ))
     }
 
-    function onCreateArticle(article){
+    function onCreateArticle(article) {
         CreateArticle(categoryId, article).then(data => {
-            setArticleData(articles => 
-                {articles.push({...article, id: data.id})
+            setArticleData(articles => {
+                articles.push({ ...article, id: data.id })
                 return articles
             })
             handleClose()
         })
     }
 
-    function onEditArticle(article){
+    function onEditArticle(article) {
         setSelectedArticle(selected => article)
-        setShow(true) 
+        setShow(true)
     }
 
-    function onSaveEdit(article, id){
+    function onSaveEdit(article, id) {
         UpdateArticle(article, categoryId, id).then(data => {
             handleClose()
             console.log(data);
         })
     }
 
-    function onDeleteArticle(articleId){
+    function onDeleteArticle(articleId) {
         DeleteArticle(categoryId, articleId).then(data => {
             setArticleData(articles => articles.filter(article => article.id !== articleId))
         })
     }
     return (
-    <>
-        <CreateArticleModal article={selectedArticle} onSaveEdit={onSaveEdit} onCreate={onCreateArticle} filters={categoryFilters} show={show} onClose={handleClose}/>
-        <Container>
-        <Row className="header">
-            <Col lg={{span: 5, offset: 1}}>
-                <search></search>
-            </Col>
-            <Col lg={{span: 2, offset: 10}}>
-            <Button onClick={handleShow}>
-                    New <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-            </Button>
-            </Col>
-        </Row>
-        <Row lg={20}>
-            <Col lg={{ span: 18, offset: 0}}>
-            <Table className="table" hover bordered responsive striped>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Text</th>
-                        <th>Cost</th>
-                        <th>Type</th>
-                        <th>Buys</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {renderData()}
-                </tbody>
-            </Table>
-            </Col>
-        </Row>
-        </Container>
-    </>
+        <>
+            <CreateArticleModal article={selectedArticle} onSaveEdit={onSaveEdit} onCreate={onCreateArticle} filters={categoryFilters} show={show} onClose={handleClose} />
+            <Container>
+                <Row className="header" lg={20}>
+                    <Col md={4} className="search-form">
+                        <Form.Control />
+                        <FontAwesomeIcon onClick={() => console.log("search")} className="search-button" icon={faSearch}></FontAwesomeIcon>
+                    </Col>
+                    <Col md={{ span: 2, offset: 6 }}>
+                        <Button onClick={handleShow}>
+                            New <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+                        </Button>
+                    </Col>
+                </Row>
+                {/* <Row className="header">
+                    <Col lg={{ span: 2, offset: 10 }}>
+                        <Button onClick={handleShow}>
+                            New <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+                        </Button>
+                    </Col>
+                    <Col lg={{ span: 5, offset: 1 }}>
+                        <FormControl></FormControl>
+                    </Col>
+                </Row> */}
+                <Row lg={20}>
+                    <Col lg={{ span: 18, offset: 0 }}>
+                        <Table className="table" hover bordered responsive striped>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Text</th>
+                                    <th>Cost</th>
+                                    <th>Type</th>
+                                    <th>Buys</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {renderData()}
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 }
 

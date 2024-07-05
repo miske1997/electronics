@@ -92,12 +92,12 @@ function BuyForm({ onSubmit = () => { } }) {
                 </Form.Group>
             </Row>
 
-            <Form.Group className="mb-3" id="formGridCheckbox">
+            {/* <Form.Group className="mb-3" id="formGridCheckbox">
                 <Form.Check type="checkbox" label="Save my details" />
-            </Form.Group>
+            </Form.Group> */}
 
             <Button variant="primary" type="submit">
-                Submit
+                Order
             </Button>
         </Form>
     );
