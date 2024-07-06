@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import db from "../configs/firebase";
 
 
@@ -14,6 +14,11 @@ export async function GetFiltersForCategory(categoryId){
     let data = []
     querySnapshot.forEach(doc => data.push(doc.data()))
     return data
+}
+
+export async function GetCategory(categoryId){
+    const querySnapshot = await getDoc(doc(db, "category", categoryId));
+    return {...querySnapshot.data(), id: querySnapshot.id}
 }
 
 export async function GetMainCategorys(){

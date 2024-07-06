@@ -28,7 +28,10 @@ function OrdersTable() {
         if (!ordersData || ordersData.length === 0){
             return
         }
-        return ordersData.map((data, index) => (
+        console.log(ordersData);
+        return ordersData
+        .sort((orderA, orderB) => new Date(orderA.orderTime.seconds*1000) - new Date(orderB.orderTime.seconds*1000))
+        .map((data, index) => (
         <tr>
             <td>{index}</td>
             <td>{data.name + " " + data.lastName}</td>

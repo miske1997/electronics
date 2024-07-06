@@ -71,14 +71,14 @@ function ArticlePage() {
     }
 
     return (
-        <main>
+        <main className="article-page-main">
             <Container>
                 <Row className="article-top justify-content-center">
                     <Col className="article-image-con" xs={{ span: 10 }} sm={{ span: 10 }} md={{ span: 6 }}>
                         <Image src="/chip.jpg" rounded></Image>
                     </Col>
                     <Col className="article-description" xs={{ span: 10 }} md={{ span: 4 }}>
-                        <h2>
+                        <h2 className="fs-1">
                             {article.name}
                         </h2>
                         <p>{article.cost}</p>
@@ -106,8 +106,10 @@ function ArticlePage() {
                                     </tbody>
                                 </Table>
                             </Tab>
-                            <Tab eventKey="description" title="Description">
-                                {article.description}
+                            <Tab  eventKey="description" title="Description">
+                                <div className="text-start p2 fs-4">
+                                    {article.description}
+                                </div>
                             </Tab>
                         </Tabs>
                     </Col>

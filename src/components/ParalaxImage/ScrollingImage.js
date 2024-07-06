@@ -7,7 +7,7 @@ function ScrollingImage({ picPositionPixels = 0, backgroundImageSource = "", fir
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
-      bgImgRef.current.style.backgroundPositionY = `${picPositionPixels + scrolled * 0.7}px`;
+      bgImgRef.current.style.backgroundPositionY = `${picPositionPixels + scrolled * -0.3}px`;
     };
 
     window.addEventListener("scroll", handleScroll);

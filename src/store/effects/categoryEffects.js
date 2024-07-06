@@ -1,6 +1,6 @@
 import { GetAllArticlesForCategory } from "../../services/articleService"
-import { GetFiltersForCategory } from "../../services/categoryService"
-import { setCategory, setCategoryFilters } from "../slices/categorySlice"
+import { GetCategory, GetFiltersForCategory } from "../../services/categoryService"
+import { setCategory, setCategoryData, setCategoryFilters } from "../slices/categorySlice"
 
 export function fetchCategoryArticlesById(id) {
     return async (dispatch, getState) => {
@@ -21,6 +21,18 @@ export function fetchCategoryArticlesById(id) {
         dispatch(setCategoryFilters(data))
       } catch(err) {
         dispatch(setCategoryFilters([]))
+      }
+      
+    }
+  }
+
+  export function fetchCategory(id) {
+    return async (dispatch, getState) => {
+      try{
+        const data = await GetCategory(id)
+        dispatch(setCategoryData(data))
+      } catch(err) {
+        
       }
       
     }

@@ -42,6 +42,12 @@ function OrderModal({ show = false, onClose = () => {}, triggrSubmit = () => { }
                             <p>{order ? order.email : ''}</p>
                         </Stack>
                     </ListGroup.Item>
+                    <ListGroup.Item>
+                        <Stack direction="horizontal" gap={3}>
+                            <p>Vreme Narudzbine:</p>
+                            <p>{order ? new Date(order.orderTime.seconds*1000).toLocaleDateString() + " : " + new Date(order.orderTime.seconds*1000).toLocaleTimeString() : ''}</p>
+                        </Stack>
+                    </ListGroup.Item>
                 </ListGroup>
                 <ListGroup>
                     {RenderArticles()}

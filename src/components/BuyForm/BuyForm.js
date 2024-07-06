@@ -80,9 +80,9 @@ function BuyForm({ onSubmit = () => { } }) {
 
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>State</Form.Label>
-                    <Form.Select defaultValue="Choose...">
-                        <option>Choose...</option>
-                        <option>...</option>
+                    <Form.Select defaultValue="Serbia">
+                        <option>Serbia</option>
+                        <option>BiH</option>
                     </Form.Select>
                 </Form.Group>
 

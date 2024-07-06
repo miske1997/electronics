@@ -5,6 +5,7 @@ import CartItem from "../../components/CartItem/CartItem";
 import BuyForm from "../../components/BuyForm/BuyForm";
 import { OrderArticles } from "../../services/articleService";
 import "./CartPage.css"
+import { Timestamp } from "firebase/firestore";
 
 function CartPage() {
     const articlesInCart = useSelector(selectArticlesInCart)
@@ -14,7 +15,7 @@ function CartPage() {
         dispatch(removeArticleFromCart(itemId))
     }
     function OnOrderPlaced(orderData){
-        OrderArticles(articlesInCart, orderData)
+        OrderArticles(articlesInCart, {...orderData, orderTime: Timestamp.fromDate(new Date())})
         console.log(articlesInCart)
         console.log(orderData);
     }

@@ -8,6 +8,7 @@ export const categorySlice = createSlice({
     filters: [],
     filterToApplay: [],
     sortedArticles: [],
+    category: {name: "", id: ""}
   },
   reducers: {
     setCategory: (state, action) => {
@@ -15,6 +16,9 @@ export const categorySlice = createSlice({
       state.articles = action.payload.articles
       state.filters = action.payload.filters ?? []
       state.sortedArticles = action.payload.articles
+    },
+    setCategoryData: (state, action) => {
+      state.category = action.payload
     },
     setFilter: (state, action) => {
       state.filterToApplay = state.filterToApplay.filter(filter => filter.name !== action.payload.name)
@@ -47,8 +51,10 @@ export const categorySlice = createSlice({
   },
 })
 
-export const {setCategoryFilters, setCategory, filterByPriceAsc, filterByPriceDesc, filterByNameAsc, filterByNameDesc, filterByPopularity, removeFilter, setFilter } = categorySlice.actions
+export const {setCategoryFilters, setCategory, setCategoryData, filterByPriceAsc, filterByPriceDesc, filterByNameAsc, filterByNameDesc, filterByPopularity, removeFilter, setFilter } = categorySlice.actions
 
+
+export const selectCategory = (state) => state.category.category 
 export const selectFilters = (state) => state.category.filters 
 export const selectArticles = (state) => {
     let articles = state.category.sortedArticles

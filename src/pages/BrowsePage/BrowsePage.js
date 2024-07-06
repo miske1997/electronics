@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from '../../store/slices/generalSlice';
 import { fetchGeneralData } from '../../store/effects/generalDataEffects';
 import { useEffect, useState } from 'react';
-import { filterByNameAsc, filterByNameDesc, filterByPopularity, filterByPriceAsc, filterByPriceDesc, selectArticles, selectFilters } from '../../store/slices/categorySlice';
-import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
+import { filterByNameAsc, filterByNameDesc, filterByPopularity, filterByPriceAsc, filterByPriceDesc, selectArticles, selectCategory, selectFilters } from '../../store/slices/categorySlice';
+import { fetchCategory, fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
 import FilterSelect from '../../components/FilterSelect/FilterSelect';
 import { setArticle } from '../../store/slices/articleSlice';
 import { selectArticlesInCart } from '../../store/slices/cartSlice';
@@ -29,6 +29,7 @@ function BrowsePage() {
     const filters = useSelector(selectFilters)
     const articlesList = useSelector(selectArticles)
     const articlesInCart = useSelector(selectArticlesInCart)
+    const category = useSelector(selectCategory)
 
     const dispatch = useDispatch()
 
@@ -40,6 +41,7 @@ function BrowsePage() {
 
     useEffect(() => {
         dispatch(fetchGeneralData())
+        dispatch(fetchCategory(categoryId))
         dispatch(fetchCategoryArticlesById(categoryId))
         dispatch(fetchFiltersForCategory(categoryId))
     }, [categoryId]);
@@ -72,6 +74,9 @@ function BrowsePage() {
             {/* <div className='categorys'>
                 <CategorySelect onCategoryClick={OnCategoryClick} activeCategory={categoryId} categories={categories}></CategorySelect>
             </div> */}
+            <div className='category-name'>
+                {category.name}
+            </div>
             <div className='articles-grid-controlls'>
                 <div className='controlles'>
                     <Button onClick={() => setShowFilters(show => !show)}>Filters</Button>

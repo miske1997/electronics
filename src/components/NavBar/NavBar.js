@@ -9,17 +9,19 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import {Outlet, useNavigate, useParams} from 'react-router-dom';
 import "./NavBar.css"
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from '../../store/slices/generalSlice';
 import { fetchGeneralData } from '../../store/effects/generalDataEffects';
 import CategorySelect from '../CategorySelect/CategorySelect';
 import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
+import SideCart from '../SideCart/SideCart';
 
 function NavBar() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [showSideCart, setShowSideCart] = useState(false)
     const productsDropdownRef = useRef();
     const categories = useSelector(selectCategories);
     let { categoryId } = useParams("categoryId");
@@ -27,6 +29,7 @@ function NavBar() {
     function GoTo(url){
         navigate(url);
     }
+    const handleHide = () => setShowSideCart(false);
 
     useEffect(() => {
         dispatch(fetchGeneralData())
@@ -82,7 +85,7 @@ function NavBar() {
                                 />
                                 <Button variant="outline-success">Search</Button>
                             </Form>
-                            <Nav.Link onClick={() => GoTo("/cart")}>
+                            <Nav.Link onClick={() => setShowSideCart(true)}>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                             </Nav.Link>
                         </Nav>
@@ -91,7 +94,7 @@ function NavBar() {
                         
             </Container>
         </Navbar>
-
+        <SideCart show={showSideCart} handleClose={handleHide}></SideCart>
         <Outlet></Outlet>
         </>
     );

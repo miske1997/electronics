@@ -34,7 +34,7 @@ function CategoryPage() {
     }
 
     return (
-        <Container>
+        <Container className="category-panel">
         <Row lg={20}>
             <Col lg={{ span: 18, offset: 0}}>
             <Table className="table" hover bordered responsive striped>
