@@ -14,7 +14,7 @@ function CartItem({onClickX = () => {}, item = {id: 0 ,title: '', imageSrc: "/ch
                 <p className='cart-title'>{item.name}</p>
                 <div>
                     <p className='item-amount'>{`Kolicina: ${item.amount}`}</p>
-                    <p className='item-cost'>{`Cena: ${item.cost * item.amount},00 RSD`}</p>
+                    <p className='item-cost'>{`Cena: ${item.cost},00 RSD`}</p>
                 </div>
             </div>
             {

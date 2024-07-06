@@ -16,6 +16,7 @@ import { fetchArticleById } from "../../store/effects/articleEffects";
 import { useParams } from "react-router";
 import { addArticleToCart, removeArticleFromCart, selectArticlesInCart } from "../../store/slices/cartSlice";
 import AmountSelect from "../../components/AmountSelect/AmountSelect";
+import { Table } from "react-bootstrap";
 
 
 function ArticlePage() {
@@ -46,6 +47,20 @@ function ArticlePage() {
         dispatch(removeArticleFromCart(article.id ?? 0))
     }
 
+    function renderSpecifications(){
+        let specs = article.specification.split("\n")
+        specs = specs.map(spec => spec.split(":"))
+        console.log(specs);
+        return specs.map(spec => {
+            return (
+                <tr>
+                    <td>{spec[0]}</td>
+                    <td>{spec[1]}</td>
+                </tr>
+            )
+        })
+    }
+
     function renderAddToCartButton(){
         if (!cart || !article)
             return;
@@ -54,7 +69,6 @@ function ArticlePage() {
         else
             return (<Button onClick={addToCart} className="m-1">Add to cart <FontAwesomeIcon icon={faShoppingCart} /></Button>)
     }
-
 
     return (
         <main>
@@ -86,10 +100,14 @@ function ArticlePage() {
                             justify
                         >
                             <Tab eventKey="specification" title="specification">
-                                {article.description}
+                                <Table hover bordered striped>
+                                    <tbody>
+                                        {renderSpecifications()}
+                                    </tbody>
+                                </Table>
                             </Tab>
                             <Tab eventKey="description" title="Description">
-                                {article.specification}
+                                {article.description}
                             </Tab>
                         </Tabs>
                     </Col>
