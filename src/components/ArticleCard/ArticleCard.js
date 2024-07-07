@@ -22,7 +22,7 @@ function ArticleCard({onClick = () => {}, articleInCart = false, article = {id: 
                 <Card.Img variant="top" src={`/${imageSrc}`} />
                 <div style={{backgroundColor: "black", height: "1px", width: "98%", margin: "auto"}}></div>
                 <Card.Body>
-                    <Card.Title>{article.name}</Card.Title>
+                    <Card.Title className='card-title'>{article.name}</Card.Title>
                     <div className='card-info'>
                         <div>
                             <span className='article-cost'>{article.cost}</span>

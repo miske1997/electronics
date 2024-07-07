@@ -22,6 +22,12 @@ function CreateArticleModal({article = null, show = false, onClose = () => {}, o
        
     }
 
+    function getFilterData(form){
+        let data = {}
+        filters.forEach((filter, index) => data[filter.propName] = form[4 + index].value)
+        return data
+    }
+
     function submit(event){
         let form = event.currentTarget;
         event.preventDefault();
@@ -31,7 +37,7 @@ function CreateArticleModal({article = null, show = false, onClose = () => {}, o
             description: form[1].value,
             specification: form[2].value,
             cost: form[3].value,
-            type: form[4].value,
+            ...getFilterData(form),
             buys: 0,
         }
         if (article)

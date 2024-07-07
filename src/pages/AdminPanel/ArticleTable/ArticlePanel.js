@@ -40,7 +40,6 @@ function ArticleTable() {
             <tr>
                 <td>{index}</td>
                 <td>{data.name}</td>
-                <td>{data.description}</td>
                 <td>{data.cost}</td>
                 <td>{data.type}</td>
                 <td>{data.buys}</td>
@@ -115,7 +114,6 @@ function ArticleTable() {
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Text</th>
                                     <th>Cost</th>
                                     <th>Type</th>
                                     <th>Buys</th>

@@ -52,7 +52,7 @@ function NavBar() {
         <>
         <Navbar sticky='top' expand="md" bg='dark' data-bs-theme="dark" className="bg-body-tertiary navbar-main ">
             <Container fluid>
-                <Navbar.Brand style={{fontSize: "inherit"}} href="/">Anika Panika</Navbar.Brand>
+                <Navbar.Brand style={{fontSize: "inherit"}} href="/">Anika</Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
                 <Navbar.Offcanvas
                     id={`offcanvasNavbar-expand-md`}

@@ -35,7 +35,7 @@ function BrowsePage() {
 
     let { categoryId } = useParams("categoryId");
     const currentPage = new URL(window.location).searchParams.get("page") ?? 1
-    const pageSize = 30
+    const pageSize = 8
 
     let navigate = useNavigate()
 

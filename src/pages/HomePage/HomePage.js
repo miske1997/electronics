@@ -8,7 +8,7 @@ function HomePage() {
 
     return (
         <main style={{height: "180rem"}}>
-            <ScrollingImage firstParagraphFirstRow='Anika ' secondParagraph='panika' picPositionPixels={-20} backgroundImageSource='https://www.nextpcb.com/uploads/images/202303/20/1679303211-0734-cavktR.jpg'></ScrollingImage>
+            <ScrollingImage firstParagraphFirstRow='' secondParagraph='' picPositionPixels={-20} backgroundImageSource='https://www.nextpcb.com/uploads/images/202303/20/1679303211-0734-cavktR.jpg'></ScrollingImage>
             <div style={{display: "flex",alignItems: "center", flexDirection: "column", width: "100%", justifyContent: "center"}}>
                 <h1 style={{marginBlock: "3rem"}}>Popular Articles</h1>
                 <Carousel>

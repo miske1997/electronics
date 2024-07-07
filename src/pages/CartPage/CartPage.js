@@ -38,7 +38,7 @@ function CartPage() {
         return price
     }
     return (
-        <Container className="p-5 p-sm-1 " >
+        <Container className="cart-page " >
 
             <Row className='justify-content-center  gap-5 gap-lg-2' >
                 <Col xs={{span: 12, order: 2}} lg={{span: 5, order: 1}}>
