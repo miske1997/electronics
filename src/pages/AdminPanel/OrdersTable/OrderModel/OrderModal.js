@@ -2,7 +2,7 @@ import { Button, ListGroup, Modal, Stack } from "react-bootstrap";
 import CartItem from "../../../../components/CartItem/CartItem";
 
 
-function OrderModal({ show = false, onClose = () => {}, triggrSubmit = () => { }, order = { name: "", articles: [] } }) {
+function OrderModal({ show = false, onClose = () => {}, triggrSubmit = () => { }, order = { name: "", articles: [], completed: false } }) {
 
     function RenderArticles() {
         if (!order){
@@ -57,9 +57,15 @@ function OrderModal({ show = false, onClose = () => {}, triggrSubmit = () => { }
                 <Button variant="secondary" onClick={onClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={triggrSubmit}>
-                    Place Order
-                </Button>
+                {order.completed !== true ? 
+                (
+                    <Button variant="primary" onClick={triggrSubmit}>
+                        Place Order
+                    </Button>
+                ) 
+                : ""
+                }
+                
             </Modal.Footer>
         </Modal>
     );

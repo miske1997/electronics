@@ -1,4 +1,15 @@
 
+.ordedr-controlles{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-block: 1rem;
+}
+
+.ordedr-controlles .search{
+    width: 20rem;
+}
 
 .header{
     margin-bottom: 1rem;

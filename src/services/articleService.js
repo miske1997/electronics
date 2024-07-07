@@ -33,9 +33,3 @@ export async function OrderArticles(articles, orderDetails){
     return await addDoc(orderCollection, {...orderDetails, articles: articles})
 }
 
-export async function GetOrders(){
-    const querySnapshot  = await getDocs(collection(db, "orders"));
-    let data = []
-    querySnapshot.forEach(doc => data.push({...doc.data(), id: doc.id}))
-    return data
-}
