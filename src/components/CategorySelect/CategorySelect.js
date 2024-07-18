@@ -20,6 +20,8 @@ function CategorySelect({onCategoryClick = () => {}, categories = [], activeCate
     }
 
     function RenderCategoriy(category) {
+        if (!category.categoryNames)
+            return ""
         return category.categoryNames.map((categoryName, index) => {
             return (<ListGroup.Item onClick={()=> onCategoryClick(category.categorys[index])} active={IsCategoryActive(categoryName)}>
                 {/* <Link className="category-link" to={`/browse/${categoryItem}`}>

@@ -23,7 +23,7 @@ export const categorySlice = createSlice({
     setFilter: (state, action) => {
       let apended = false
       state.filterToApplay.forEach(filter => {
-        if (filter.name == action.payload.name) {
+        if (filter.name === action.payload.name) {
           filter.options.push(action.payload.value)
           apended = true
         }
@@ -38,9 +38,9 @@ export const categorySlice = createSlice({
     removeFilter: (state, action) => {
       let removed = false
       state.filterToApplay.forEach(filter => {
-        if (filter.name == action.payload.name) {
+        if (filter.name === action.payload.name) {
           filter.options = filter.options.filter(option => option !== action.payload.value)
-          if (filter.options.length == 0) {
+          if (filter.options.length === 0) {
             removed = true
           }
         }

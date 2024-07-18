@@ -66,16 +66,17 @@ function NavBar() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                            <Nav.Link onClick={() => GoTo("/")}>Home</Nav.Link>
+                            <Nav.Link onClick={() => GoTo("/")}>Naslovna</Nav.Link>
                             <NavDropdown
                                 ref={productsDropdownRef}
-                                title="Products"
+                                title="Proizvodi"
                                 id={`offcanvasNavbarDropdown-expand-md`}
                             >
                                 <CategorySelect onCategoryClick={OnCategoryClick} activeCategory={categoryId} categories={categories}></CategorySelect>
                                 {/* {RenderProducts()} */}
                             </NavDropdown>
-                            <Nav.Link onClick={() => GoTo("/about")}>About Us</Nav.Link>
+                            <Nav.Link onClick={() => GoTo("/about")}>O Nama</Nav.Link>
+                            <Nav.Link onClick={() => GoTo("/about")}>Kontakt</Nav.Link>
                             <Form className="d-flex">
                                 <Form.Control
                                     type="search"

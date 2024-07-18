@@ -17,6 +17,8 @@ import { useParams } from "react-router";
 import { addArticleToCart, removeArticleFromCart, selectArticlesInCart } from "../../store/slices/cartSlice";
 import AmountSelect from "../../components/AmountSelect/AmountSelect";
 import { Breadcrumb, Stack, Table } from "react-bootstrap";
+import Carousel from "../../components/Carousel/Carousel";
+import PopularCard from "../../components/PopularCard/PopularCard";
 
 
 function ArticlePage() {
@@ -74,7 +76,7 @@ function ArticlePage() {
         <main className="article-page-main">
             <Container>
                 <Row>
-                    <Col md={{order:3}} lg={{order: 3}} xl={{order: 3}}>
+                    <Col md={{ order: 3 }} lg={{ order: 3 }} xl={{ order: 3 }}>
                         <Breadcrumb className="bread-crumbs">
                             <Breadcrumb.Item>Pocetna</Breadcrumb.Item>
                             <Breadcrumb.Item>Merni Instrumenti</Breadcrumb.Item>
@@ -92,14 +94,14 @@ function ArticlePage() {
                             {article.name}
                         </h2>
                         <p>TR2N109</p>
-                        <div style={{flexGrow: "1"}}></div>
+                        <div style={{ flexGrow: "1" }}></div>
                         {/* <div className="m-3">
                             <span>Kolicina</span>
                             <AmountSelect amount={amount} changeAmountBy={ChangeAmount}></AmountSelect>
                         </div> */}
-                        <div className="m-1" style={{paddingBottom: "1rem", display: "flex", gap: "1rem", alignItems: "center"}}>
+                        <div className="m-1" style={{ paddingBottom: "1rem", display: "flex", gap: "1rem", alignItems: "center" }}>
                             <h3 className="m-0">{`${article.cost} RSD`}</h3>
-                            <input style={{margin: 0, width: "5rem", textAlign: 'center'}} defaultValue={1} min={1}   type="number"></input>
+                            <input style={{ margin: 0, width: "5rem", textAlign: 'center' }} defaultValue={1} min={1} type="number"></input>
                         </div>
                         <div>
                             <Button className="m-1">Naruci</Button>
@@ -131,7 +133,28 @@ function ArticlePage() {
                         </Tabs>
                     </Col>
                 </Row>
-
+                <Row className="mt-5 justify-content-center">
+                    <Col>
+                        <h2>Preporuceni Artikli</h2>
+                    </Col>
+                </Row>
+                <Row className="justify-content-center">
+                        <Col>
+                            <Carousel>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            </Carousel>
+                        </Col>
+                </Row>
             </Container>
 
         </main>

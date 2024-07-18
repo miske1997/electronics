@@ -1,7 +1,7 @@
 .carousel-main-div {
     position: relative;
     display: flex;
-    width: 90%;
+    width: 100%;
     overflow: hidden;
     align-items: center;
     padding-block: 2rem;
