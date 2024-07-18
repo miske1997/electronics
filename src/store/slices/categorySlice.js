@@ -8,7 +8,7 @@ export const categorySlice = createSlice({
     filters: [],
     filterToApplay: [],
     sortedArticles: [],
-    category: {name: "", id: ""}
+    category: { name: "", id: "" }
   },
   reducers: {
     setCategory: (state, action) => {
@@ -21,14 +21,32 @@ export const categorySlice = createSlice({
       state.category = action.payload
     },
     setFilter: (state, action) => {
-      state.filterToApplay = state.filterToApplay.filter(filter => filter.name !== action.payload.name)
-      state.filterToApplay.push({
-        name: action.payload.name,
-        value: action.payload.value
+      let apended = false
+      state.filterToApplay.forEach(filter => {
+        if (filter.name == action.payload.name) {
+          filter.options.push(action.payload.value)
+          apended = true
+        }
       })
+      if (!apended) {
+        state.filterToApplay.push({
+          name: action.payload.name,
+          options: [action.payload.value]
+        })
+      }
     },
     removeFilter: (state, action) => {
-      state.filterToApplay = state.filterToApplay.filter(filter => filter.name !== action.payload)
+      let removed = false
+      state.filterToApplay.forEach(filter => {
+        if (filter.name == action.payload.name) {
+          filter.options = filter.options.filter(option => option !== action.payload.value)
+          if (filter.options.length == 0) {
+            removed = true
+          }
+        }
+      })
+      if (removed)
+        state.filterToApplay = state.filterToApplay.filter(filter => filter.name !== action.payload.name)
     },
     filterByPriceAsc: (state, action) => {
       state.sortedArticles = state.sortedArticles.sort((a, b) => a.cost > b.cost ? 1 : -1)
@@ -51,21 +69,22 @@ export const categorySlice = createSlice({
   },
 })
 
-export const {setCategoryFilters, setCategory, setCategoryData, filterByPriceAsc, filterByPriceDesc, filterByNameAsc, filterByNameDesc, filterByPopularity, removeFilter, setFilter } = categorySlice.actions
+export const { setCategoryFilters, setCategory, setCategoryData, filterByPriceAsc, filterByPriceDesc, filterByNameAsc, filterByNameDesc, filterByPopularity, removeFilter, setFilter } = categorySlice.actions
 
 
-export const selectCategory = (state) => state.category.category 
-export const selectFilters = (state) => state.category.filters 
+export const selectCategory = (state) => state.category.category
+export const selectFilters = (state) => state.category.filters
+export const selectCheckedFilters = (state) => state.category.filterToApplay
 export const selectArticles = (state) => {
-    let articles = state.category.sortedArticles
-    state.category.filterToApplay.forEach(filter => {
+  let articles = state.category.sortedArticles
+  state.category.filterToApplay.forEach(filter => {
       articles = articles.filter(article => {
         if (!Object.hasOwn(article, filter.name))
           return false
-        return article[filter.name] === filter.value
+        return filter.options.includes(article[filter.name])
       })
-    });
-    return articles
-  }
+  });
+  return articles
+}
 
 export default categorySlice.reducer

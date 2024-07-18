@@ -1,0 +1,28 @@
+
+.filter-chips-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.filter-chips-container:has(.filter-chip){
+    padding-bottom: 1rem;
+    padding-left: 12px;
+}
+
+.filter-chip{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.3rem;
+    border-radius: 4px;
+    background-color: rgb(205, 217, 253);
+    position: relative;
+    padding-inline: 0.8rem;
+}
+
+.chip-cross-icon{
+
+}

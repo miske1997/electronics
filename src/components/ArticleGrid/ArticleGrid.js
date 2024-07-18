@@ -19,7 +19,7 @@ function ArticleGrid({articlesInCart = [], onArticleClick = () => {}, articleLis
     function RenderRow(articleSubList) {
         return articleSubList.map(article => {
             return (
-                <Col  xs={{span: 8}} sm={{span: 8}} md={{span: 4}}  xl={{span: 2}}>
+                <Col  xs={{span: 8}} sm={{span: 8}} lg={{span: 4}}  xl={{span: 3}}>
                     <ArticleCard articleInCart={IsArticleInCart(article)} onClick={onArticleClick} article={article} imageSrc={article.imageSrc} ></ArticleCard>
                 </Col>
             )
@@ -32,17 +32,17 @@ function ArticleGrid({articlesInCart = [], onArticleClick = () => {}, articleLis
         const rows = []
         while(listClone.length > 0){
             if(listClone.length < itemsInRow){
-                rows.push((<Row  className="top-buffer justify-content-center gap-5" > {RenderRow(listClone.splice(0, listClone.length))} </Row>))
+                rows.push((<Row  className="top-buffer justify-content-center" > {RenderRow(listClone.splice(0, listClone.length))} </Row>))
             }
             else{
-                rows.push((<Row  className="top-buffer justify-content-center gap-5" > {RenderRow(listClone.splice(0, itemsInRow))} </Row>))
+                rows.push((<Row   className="top-buffer justify-content-center" > {RenderRow(listClone.splice(0, itemsInRow))} </Row>))
             }
         }
         return rows
     }
 
     return (
-        <Container fluid='md'>
+        <Container fluid>
             {RenderArticles()}
         </Container>
     );

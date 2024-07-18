@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ArticleGrid from '../../components/ArticleGrid/ArticleGrid';
 import CategorySelect from '../../components/CategorySelect/CategorySelect';
 import "./BrowsePage.css"
-import { Button } from 'react-bootstrap';
+import { Breadcrumb, Button, Stack } from 'react-bootstrap';
 import CustomToggle from '../../components/CustomToggle/CustomeToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from '../../store/slices/generalSlice';
@@ -14,6 +14,8 @@ import FilterSelect from '../../components/FilterSelect/FilterSelect';
 import { setArticle } from '../../store/slices/articleSlice';
 import { selectArticlesInCart } from '../../store/slices/cartSlice';
 import TablePagination from '../../components/TablePagination/TablePagination';
+import FilterSideBar from '../../components/FilterSideBar/FilterSideBar';
+import FilterChips from '../../components/FilterChips/FilterChips';
 
 const filterMap = [
     filterByNameAsc,
@@ -74,21 +76,39 @@ function BrowsePage() {
             {/* <div className='categorys'>
                 <CategorySelect onCategoryClick={OnCategoryClick} activeCategory={categoryId} categories={categories}></CategorySelect>
             </div> */}
-            <div className='category-name'>
-                {category.name}
+            <Breadcrumb className='bread-crumbs'>
+                <Breadcrumb.Item>Pocetna</Breadcrumb.Item>
+                <Breadcrumb.Item>Merni Instrumenti</Breadcrumb.Item>
+                <Breadcrumb.Item>Digitalni multimeri</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className='name-container'>
+                <div className='category-name'>
+                    {category.name}
+                </div>
+                <div style={{flexGrow: '1'}}></div>
+                <Stack style={{alignItems: "center"}} gap={1}  direction='horizontal'>
+                    <p>Sortiranje prema:</p>
+                    <CustomToggle onValueChanged={OnFilterSelect}></CustomToggle>
+                </Stack>
             </div>
             <div className='articles-grid-controlls'>
-                <div className='controlles'>
+                {/* <div className='controlles'>
                     <Button onClick={() => setShowFilters(show => !show)}>Filters</Button>
                     <div style={{flexGrow: '1'}}></div>
                     <CustomToggle onValueChanged={OnFilterSelect}></CustomToggle>
-                </div>
+                </div> */}
                 {showFilters === true ? (<div className='filters-con'>
                     {RenderFilters()}
                 </div>) : ""}
-                <ArticleGrid articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList.slice((currentPage - 1) * pageSize, Math.min(articlesList.length, (currentPage - 1) * pageSize + pageSize))}></ArticleGrid>
-                <TablePagination currentPage={currentPage} numOfPages={Math.ceil(articlesList.length / pageSize)}></TablePagination>
             </div>
+            <div className='grid-container'>
+                <FilterSideBar filters={filters}></FilterSideBar>
+                <div style={{width: "100%"}}>
+                    <FilterChips></FilterChips>
+                    <ArticleGrid articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList.slice((currentPage - 1) * pageSize, Math.min(articlesList.length, (currentPage - 1) * pageSize + pageSize))}></ArticleGrid>
+                </div>
+            </div>
+            <TablePagination currentPage={currentPage} numOfPages={Math.ceil(articlesList.length / pageSize)}></TablePagination>
         </main>
     );
 }

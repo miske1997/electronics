@@ -1,0 +1,28 @@
+.filter-side-bar:has(.accordion-item){
+    width: 20rem;
+    height: 30rem;
+    text-align: start;
+}
+
+.filter-accordian .list-group-item {
+    background-color: inherit !important;
+    border: none;
+}
+
+.filter-accordian .accordion-body{
+    padding: 0;
+}
+
+.filter-accordian .accordion-item{
+    border: none !important;
+    cursor: pointer;
+    background-color: inherit !important;
+}
+
+.filter-accordian .accordion-button{
+    background-color: inherit;
+}
+
+.filter-accordian .accordion-button:focus{
+    box-shadow: none;
+}

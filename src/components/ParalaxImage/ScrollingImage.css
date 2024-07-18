@@ -1,5 +1,6 @@
 .parallax-main-div
   {
+    position: relative;
     padding:0;
     margin: 0;
     min-height: 60vh;

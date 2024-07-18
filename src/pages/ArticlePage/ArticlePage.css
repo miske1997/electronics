@@ -28,6 +28,8 @@
     padding-top: 3rem;
     padding-left: 2rem;
     padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
 }
 
 @media (min-width: 768px){

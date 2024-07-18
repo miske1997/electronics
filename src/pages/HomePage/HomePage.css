@@ -1,4 +1,30 @@
 
+.category-container{
+    position: absolute;
+    left: 1.5rem;
+    height: 94%;
+    top: 3%;
+    background-color: #fff;
+    overflow-y: auto;
+    box-shadow: 32px 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title{
+    position: absolute;
+    top: 3rem;
+    left: 25rem;
+}
+
+.hero-text{
+    position: absolute;
+    top: 8rem;
+    left: 25rem;
+    width: 30%;
+    text-align: left;
+    text-shadow: 2px #fff;
+    
+}
+
 .popular-carousel{
     width: 100%;
     height: 6rem;
