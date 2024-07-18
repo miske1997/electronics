@@ -1,27 +1,28 @@
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import "./FilterChips.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFilter, selectCheckedFilters } from "../../store/slices/categorySlice";
 
 function FilterChips() {
-
+    const dispatch = useDispatch()
     let filters = [{name: 'Marka', value: "UNI-T"}]
+    const checkedFilters = useSelector(selectCheckedFilters)
 
-    function RemoveChip(filter){
-
-    }
-
-    function GetFilters(){
-        return filters
+    function RemoveChip(paramName, option){
+        dispatch(removeFilter({name: paramName, value: option}))
     }
 
     function RenderChips(){
-        return GetFilters().map(filter => {
-            return (
-                <div className="filter-chip">
-                    {`${filter.name}: ${filter.value}`}
-                    <FontAwesomeIcon onClick={() => RemoveChip(filter)} className='chip-cross-icon' size='sm' icon={faX}></FontAwesomeIcon>
-                </div>
-            )
+        return checkedFilters.map(filter => {
+            return filter.options.map(option => {
+                return (
+                    <div className="filter-chip">
+                        {`${filter.name}: ${option}`}
+                        <FontAwesomeIcon onClick={() => RemoveChip(filter.name, option)} className='chip-cross-icon' size='sm' icon={faX}></FontAwesomeIcon>
+                    </div>
+                )
+            })
         })
     }
 
