@@ -18,9 +18,8 @@ function Carousel({children = [], minGap = 50, carouselItems = [] }) {
   console.log(children)
 
   useEffect(() => {
-    const card = carouselRef.current.querySelector('.popular-card')
+    const card = carouselRef.current.querySelector(':first-child')
     const refWidth = carouselMainRef.current.clientWidth
-    
     const cardWidth = 330 + minGap
     
     const cardsInView = Math.floor(refWidth / cardWidth)

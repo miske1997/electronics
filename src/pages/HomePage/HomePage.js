@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCategories } from '../../store/slices/generalSlice';
 import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
 import { useNavigate } from 'react-router';
+import ZoomingImage from '../../components/Helpers/ZoomingImage/ZoomingImage';
 
 
 function HomePage() {
@@ -50,17 +51,11 @@ function HomePage() {
             <div>
                 <h1 style={{ marginBlock: "3rem" }}>Popularne Kategorije</h1>
                 <Carousel>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                    <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                    <ZoomingImage onCategoryClick={OnCategoryClick} text='Merni Instrumenti' src='https://elektroleum.rs/wp-content/uploads/2024/01/universal-multimeter-voltcraft-vc-440-e-2-e1704546584200.webp'></ZoomingImage>
+                    <ZoomingImage onCategoryClick={OnCategoryClick} text='Alati i Pribor' src='https://elektroleum.rs/wp-content/uploads/2021/11/ERSA-e1704546708198.jpg'></ZoomingImage>
+                    <ZoomingImage src='https://elektroleum.rs/wp-content/uploads/2023/03/Laboratorijsko-napajanje-3.jpg'></ZoomingImage>
+                    <ZoomingImage src='https://elektroleum.rs/wp-content/uploads/2022/03/MicroBit-ploca-e1704545783894.png'></ZoomingImage>
+                    <ZoomingImage src='https://elektroleum.rs/wp-content/uploads/2024/01/Alat-i-pribor-e1704545849200.jpg'></ZoomingImage>
                 </Carousel>
             </div>
             <div>
