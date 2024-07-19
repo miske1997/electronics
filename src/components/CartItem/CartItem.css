@@ -25,18 +25,8 @@
     flex-grow: 1;
 }
 
-.cart-data-con > div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 2rem;
-    height: min-content;
-}
-
 .cart-title{
-    max-width: 40%;
+    max-width: 100%;
     min-width: 30%;
     max-height: 60%;
     font-size: 24px;

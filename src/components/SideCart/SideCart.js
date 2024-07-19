@@ -1,9 +1,12 @@
-import { Button, ListGroup, Offcanvas } from "react-bootstrap";
+import { Button, Image, ListGroup, Offcanvas, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { removeArticleFromCart, selectArticlesInCart } from "../../store/slices/cartSlice";
 import CartItem from "../CartItem/CartItem";
 import "./SideCart.css"
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
+import ArticleItemRow from "../Helpers/ArticleItemRow/ArticleItemRow";
 
 function SideCart({ show = false, handleClose = () => { } }) {
 
@@ -11,7 +14,7 @@ function SideCart({ show = false, handleClose = () => { } }) {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    function onCartItemRemoveClick(itemId){
+    function onCartItemRemoveClick(itemId) {
         dispatch(removeArticleFromCart(itemId))
     }
 
@@ -26,7 +29,15 @@ function SideCart({ show = false, handleClose = () => { } }) {
 
         })
     }
-    function GoTo(url){
+    function RenderRow(){
+        return articlesInCart.map(article => {
+            return (
+                <ArticleItemRow article={article} onCartItemRemoveClick={onCartItemRemoveClick}></ArticleItemRow>
+            )
+
+        })
+    }
+    function GoTo(url) {
         navigate(url);
     }
     return (
@@ -36,10 +47,25 @@ function SideCart({ show = false, handleClose = () => { } }) {
                 <Offcanvas.Title className="fs-2">Cart</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
+                <Table >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Ime</th>
+                            <th>Kolicina</th>
+                            <th>Ukupna Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {RenderRow()}
+                        
+                    </tbody>
+                </Table>
                 <ListGroup className="gap-3 ">
-                    {RenderArticles()}
+                    
                 </ListGroup>
-                <Button onClick={() => {GoTo("/cart"); handleClose()}} size="lg" className="mt-3">Order</Button>
+                <Button onClick={() => { GoTo("/cart"); handleClose() }} size="lg" className="mt-3">Order</Button>
             </Offcanvas.Body>
         </Offcanvas>
 

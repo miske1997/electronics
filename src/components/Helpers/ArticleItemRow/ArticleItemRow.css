@@ -1,0 +1,13 @@
+.article-row{
+    position: relative;
+}
+
+.article-row td{
+    vertical-align: middle;
+}
+
+.item-cross-icon{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}

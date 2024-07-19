@@ -7,16 +7,15 @@ import './CartItem.css'
 
 //TODO responsivnes not the best
 function CartItem({onClickX = () => {}, item = {id: 0 ,title: '', imageSrc: "/chip.jpg", amount: 1,cost: 0, aditionalSelectors: []} , display = false}) {
-    return ( 
+    return (
         <div className="cart-item">
             <Image className='cart-image' src={item.imageSrc ?? "/chip.jpg"}></Image>
             <div className='cart-data-con'>
                 <p className='cart-title'>{item.name}</p>
-                <div>
-                    <p className='item-amount'>{`Kolicina: ${item.amount}`}</p>
-                    <p className='item-cost'>{`Cena: ${item.cost},00 RSD`}</p>
-                </div>
             </div>
+            <p className='item-amount'>{`Kolicina: ${item.amount}`}</p>
+            <p className='item-cost'>{`Cena: ${item.cost},00 RSD`}</p>
+            
             {
             display === false ? 
             (<FontAwesomeIcon onClick={() => onClickX(item.id)} className='item-cross-icon' size='sm' icon={faX}></FontAwesomeIcon>) : ""
