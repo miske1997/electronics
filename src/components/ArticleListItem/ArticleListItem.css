@@ -1,0 +1,48 @@
+.article-list-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 10rem;
+    gap: 1%;
+    position: relative;
+    text-align: left;
+    background-color: white;
+}
+
+.article-list-item .kolicina{
+    width: 2rem;
+}
+
+.article-list-item .details{
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    flex-grow: 1;
+    padding-block: 1rem;
+    align-self: start;
+}
+.article-list-item img{
+    height: 80%;
+    width: 14rem;
+}
+
+.article-list-item .naruci{
+    margin-right: 1rem;
+}
+
+.article-list-item .details p{
+    margin: 0;
+}
+
+
+.article-list-item::after{
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+}

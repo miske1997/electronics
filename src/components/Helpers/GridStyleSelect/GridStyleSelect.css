@@ -1,0 +1,21 @@
+
+.grid-style-select{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    padding-left: 2rem;
+}
+
+.grid-style-select p{
+    margin: 0;
+}
+
+.grid-style-select .icon{
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
+.grid-style-select .selected{
+    background-color: #929292;
+}

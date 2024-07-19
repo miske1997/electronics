@@ -16,6 +16,8 @@ import { selectArticlesInCart } from '../../store/slices/cartSlice';
 import TablePagination from '../../components/TablePagination/TablePagination';
 import FilterSideBar from '../../components/FilterSideBar/FilterSideBar';
 import FilterChips from '../../components/FilterChips/FilterChips';
+import GridStyleSelect from '../../components/Helpers/GridStyleSelect/GridStyleSelect';
+import ArticleList from '../../components/ArticleList/ArticleList';
 
 const filterMap = [
     filterByNameAsc,
@@ -27,6 +29,7 @@ const filterMap = [
 
 function BrowsePage() {
     const [showFilters, setShowFilters] = useState(false)
+    const [gridDisplayType, setGridDisplayType] = useState("grid")
     const categories = useSelector(selectCategories)
     const filters = useSelector(selectFilters)
     const articlesList = useSelector(selectArticles)
@@ -90,6 +93,7 @@ function BrowsePage() {
                     <p>Sortiranje prema:</p>
                     <CustomToggle onValueChanged={OnFilterSelect}></CustomToggle>
                 </Stack>
+                <GridStyleSelect displayType={gridDisplayType} setDisplayType={setGridDisplayType}></GridStyleSelect>
             </div>
             <div className='articles-grid-controlls'>
                 {/* <div className='controlles'>
@@ -105,7 +109,11 @@ function BrowsePage() {
                 <FilterSideBar filters={filters}></FilterSideBar>
                 <div style={{width: "100%"}}>
                     <FilterChips></FilterChips>
+                    {gridDisplayType === "grid" ?
                     <ArticleGrid articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList.slice((currentPage - 1) * pageSize, Math.min(articlesList.length, (currentPage - 1) * pageSize + pageSize))}></ArticleGrid>
+                    :
+                    <ArticleList articlesInCart={articlesInCart} onArticleClick={OnArticleClick} articleList={articlesList.slice((currentPage - 1) * pageSize, Math.min(articlesList.length, (currentPage - 1) * pageSize + pageSize))}></ArticleList>
+                    }
                 </div>
             </div>
             <TablePagination currentPage={currentPage} numOfPages={Math.ceil(articlesList.length / pageSize)}></TablePagination>
