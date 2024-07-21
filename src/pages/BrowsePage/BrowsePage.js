@@ -18,6 +18,7 @@ import FilterSideBar from '../../components/FilterSideBar/FilterSideBar';
 import FilterChips from '../../components/FilterChips/FilterChips';
 import GridStyleSelect from '../../components/Helpers/GridStyleSelect/GridStyleSelect';
 import ArticleList from '../../components/ArticleList/ArticleList';
+import { GetPopularCategorys } from '../../services/categoryService';
 
 const filterMap = [
     filterByNameAsc,
@@ -90,7 +91,7 @@ function BrowsePage() {
                 </div>
                 <div style={{flexGrow: '1'}}></div>
                 <Stack style={{alignItems: "center"}} gap={1}  direction='horizontal'>
-                    <p>Sortiranje prema:</p>
+                    <p style={{margin: "0"}}>Sortiranje prema:</p>
                     <CustomToggle onValueChanged={OnFilterSelect}></CustomToggle>
                 </Stack>
                 <GridStyleSelect displayType={gridDisplayType} setDisplayType={setGridDisplayType}></GridStyleSelect>

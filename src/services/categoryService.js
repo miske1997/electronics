@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, increment, limit, orderBy, query, updateDoc } from "firebase/firestore";
 import db from "../configs/firebase";
 
 
@@ -26,5 +26,31 @@ export async function GetMainCategorys(){
     let data = []
     querySnapshot.forEach(doc => data.push({...doc.data(), id: doc.id}))
     data.forEach(category => category.categorys = category.categorys?.map(subCategory => subCategory.id))
+    return data
+}
+
+export async function IncrementCategorySalesForCart(articlesInCart){
+
+    
+    for (const article of articlesInCart) {
+        console.log(article);
+        const ref = doc(db, "category", article.categoryId);
+    
+        await updateDoc(ref, {
+            numberOfSales: increment(1)
+        });
+    }
+
+}
+
+export async function GetPopularCategorys(){
+    const categorysRef  = collection(db, "category");
+
+    const q = query(categorysRef, orderBy("numberOfSales", "desc"), limit(1));
+
+    const querySnapshot = await getDocs(q)
+
+    let data = []
+    querySnapshot.forEach(doc => data.push({...doc.data(), id: doc.id}))
     return data
 }

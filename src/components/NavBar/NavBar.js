@@ -96,7 +96,7 @@ function NavBar() {
             </Container>
         </Navbar>
         <SideCart show={showSideCart} handleClose={handleHide}></SideCart>
-        <Outlet></Outlet>
+        
         </>
     );
 }

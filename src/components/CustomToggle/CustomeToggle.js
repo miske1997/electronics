@@ -17,7 +17,7 @@ const CustomToggle = ({onValueChanged = () => {} }) =>{
   return (
     <DropdownButton id="dropdown-basic-button" title={
         <span>
-          Sort By {`: ${filterCurrent}`} <FontAwesomeIcon icon={faFilter} />
+          {`${filterCurrent}`} <FontAwesomeIcon icon={faFilter} />
         </span>
       }>
       <Dropdown.Item  onClick={(event) => {event.preventDefault(); AddUrlParam("Name Asc"); onValueChanged(0)}}>By: Name Asc</Dropdown.Item>

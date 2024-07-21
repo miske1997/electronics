@@ -22,7 +22,7 @@ function HomePage() {
     }
 
     return (
-        <main style={{ position: "relative", height: "180rem" }}>
+        <main style={{ position: "relative" }}>
 
             <ScrollingImage firstParagraphFirstRow='' secondParagraph='' picPositionPixels={-20} backgroundImageSource='https://www.nextpcb.com/uploads/images/202303/20/1679303211-0734-cavktR.jpg'>
                 <div className='category-container'>

@@ -4,14 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { addArticleToCart } from '../../store/slices/cartSlice';
+import { useParams } from 'react-router';
 
 function ArticleCard({onClick = () => {}, articleInCart = false, article = {id: 0, name: '', cost: 0}, imageSrc = 'chip.jpg'}) {
 
     const dispatch = useDispatch()
+    const { categoryId } = useParams("categoryId")
 
     function AddToCart(event){
         event.stopPropagation();
-        dispatch(addArticleToCart({...article, amount: 1}))
+        dispatch(addArticleToCart({...article, amount: 1, categoryId: categoryId}))
     }
 
     return (

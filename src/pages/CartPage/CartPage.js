@@ -7,6 +7,7 @@ import { OrderArticles } from "../../services/articleService";
 import "./CartPage.css"
 import { Timestamp } from "firebase/firestore";
 import ArticleItemRow from "../../components/Helpers/ArticleItemRow/ArticleItemRow";
+import { IncrementCategorySalesForCart } from "../../services/categoryService";
 
 function CartPage() {
     const articlesInCart = useSelector(selectArticlesInCart)
@@ -17,6 +18,7 @@ function CartPage() {
     }
     function OnOrderPlaced(orderData) {
         OrderArticles(articlesInCart, { ...orderData, orderTime: Timestamp.fromDate(new Date()) })
+        IncrementCategorySalesForCart(articlesInCart)
         console.log(articlesInCart)
         console.log(orderData);
     }

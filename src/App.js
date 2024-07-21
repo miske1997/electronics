@@ -10,6 +10,7 @@ import ArticleTable from './pages/AdminPanel/ArticleTable/ArticlePanel';
 import OrdersTable from './pages/AdminPanel/OrdersTable/OrdersPanel';
 import AboutPage from './pages/AboutUsPage/AboutPage';
 import AdminNav from './pages/AdminPanel/AdminNav/AdminNav';
+import Layout from './pages/Layout/Layout';
 
 function App() {
   
@@ -17,7 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/*"  element={<NavBar/>} >
+          <Route path="/*"  element={<Layout/>} >
             <Route index element={<HomePage/> }></Route>
             <Route path="article/:categoryId/:id" element={<ArticlePage/>} ></Route>
             <Route path="browse/:categoryId/*" element={<BrowsePage />} ></Route>

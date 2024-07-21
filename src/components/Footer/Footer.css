@@ -1,0 +1,38 @@
+
+.footer{
+    background-color: rgb(var(--bs-dark-rgb)) !important;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding-block: 0.5rem;
+    color: white
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+    padding-top: 2rem;
+}
+
+.footer .info>div{
+    
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.footer .info>div>h4{
+    text-align: center;
+    padding-bottom: 2rem;
+    color: white;
+}
+
+.footer .info p{
+    color: white;
+}
