@@ -8,6 +8,7 @@
 }
 
 
+
 .article-image-con{
     display: flex;
     align-items: center;
@@ -31,6 +32,16 @@
     display: flex;
     flex-direction: column;
 }
+
+.article-description .modifiers{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 
 @media (min-width: 768px){
     

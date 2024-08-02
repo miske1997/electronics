@@ -16,13 +16,14 @@ import { fetchArticleById } from "../../store/effects/articleEffects";
 import { useParams } from "react-router";
 import { addArticleToCart, removeArticleFromCart, selectArticlesInCart } from "../../store/slices/cartSlice";
 import AmountSelect from "../../components/AmountSelect/AmountSelect";
-import { Breadcrumb, Stack, Table } from "react-bootstrap";
+import { Breadcrumb, Dropdown, Form, Stack, Table } from "react-bootstrap";
 import Carousel from "../../components/Carousel/Carousel";
 import PopularCard from "../../components/PopularCard/PopularCard";
 
 
 function ArticlePage() {
     const [amount, setAmmount] = useState(1)
+    const [modifiers, setModifiers] = useState({})
     const article = useSelector(selectArticle)
     const cart = useSelector(selectArticlesInCart)
     const dispatch = useDispatch()
@@ -34,6 +35,12 @@ function ArticlePage() {
     useEffect(() => {
         dispatch(fetchArticleById(categoryId, id))
     }, [id, dispatch]);
+    useEffect(() => {
+        getModifiers().forEach(modifier => {
+            setModifiers(modifiers => { return { ...modifiers, [modifier.name]: modifier.values[0] } })
+        });
+        console.log(modifiers);
+    }, [article]);
 
     function ChangeAmount(change) {
         setAmmount(amount => {
@@ -43,10 +50,39 @@ function ArticlePage() {
     }
 
     function addToCart() {
-        dispatch(addArticleToCart({ ...article, imageSrc: "/chip.jpg", amount: amount, cost: 150 }))
+        dispatch(addArticleToCart({ ...article, imageSrc: "/chip.jpg", amount: amount, ...modifiers }))
     }
     function removeFromCart() {
         dispatch(removeArticleFromCart(article.id ?? 0))
+    }
+    function getModifiers() {
+        let modifierArray = []
+        for (const key in article) {
+            if (Object.hasOwnProperty.call(article, key) && Array.isArray(article[key])) {
+                modifierArray.push({ name: key, values: article[key] })
+            }
+        }
+        return modifierArray
+    }
+    function renderArticleModifiers() {
+        return getModifiers().map(modifier => {
+
+            return (
+                <div>
+                    <p>
+                        {`${modifier.name} : `}
+                    </p>
+                    <Form.Select onChange={(event) => { setModifiers(modifiers => { return { ...modifiers, [modifier.name]: event.target.value } }) }} style={{ width: "min-content" }} aria-label="Default select example">
+                        {modifier.values.map(value => {
+                            return (
+                                <option>{value}</option>
+                            )
+                        })}
+
+                    </Form.Select>
+                </div>
+            )
+        })
     }
 
     function renderSpecifications() {
@@ -99,6 +135,11 @@ function ArticlePage() {
                             <span>Kolicina</span>
                             <AmountSelect amount={amount} changeAmountBy={ChangeAmount}></AmountSelect>
                         </div> */}
+
+                        <div className="modifiers">
+                            {renderArticleModifiers()}
+
+                        </div>
                         <div className="m-1" style={{ paddingBottom: "1rem", display: "flex", gap: "1rem", alignItems: "center" }}>
                             <h3 className="m-0">{`${article.cost} RSD`}</h3>
                             <input style={{ margin: 0, width: "5rem", textAlign: 'center' }} defaultValue={1} min={1} type="number"></input>
@@ -139,21 +180,21 @@ function ArticlePage() {
                     </Col>
                 </Row>
                 <Row className="justify-content-center">
-                        <Col>
-                            <Carousel>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                                <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
-                            </Carousel>
-                        </Col>
+                    <Col>
+                        <Carousel>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                            <PopularCard article={{ name: 'Intel', description: "asdjkln jkdnbsa jkdbnjk", cost: "500" }}></PopularCard>
+                        </Carousel>
+                    </Col>
                 </Row>
             </Container>
 
