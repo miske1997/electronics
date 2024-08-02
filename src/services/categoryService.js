@@ -33,7 +33,6 @@ export async function IncrementCategorySalesForCart(articlesInCart){
 
     
     for (const article of articlesInCart) {
-        console.log(article);
         const ref = doc(db, "category", article.categoryId);
     
         await updateDoc(ref, {

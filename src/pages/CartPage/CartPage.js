@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeArticleFromCart, selectArticlesInCart } from "../../store/slices/cartSlice";
 import CartItem from "../../components/CartItem/CartItem";
 import BuyForm from "../../components/BuyForm/BuyForm";
-import { OrderArticles } from "../../services/articleService";
+import { IncrementArticleSalesOfCart, OrderArticles } from "../../services/articleService";
 import "./CartPage.css"
 import { Timestamp } from "firebase/firestore";
 import ArticleItemRow from "../../components/Helpers/ArticleItemRow/ArticleItemRow";
@@ -19,6 +19,7 @@ function CartPage() {
     function OnOrderPlaced(orderData) {
         OrderArticles(articlesInCart, { ...orderData, orderTime: Timestamp.fromDate(new Date()) })
         IncrementCategorySalesForCart(articlesInCart)
+        IncrementArticleSalesOfCart(articlesInCart)
         console.log(articlesInCart)
         console.log(orderData);
     }

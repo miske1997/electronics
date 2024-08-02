@@ -1,4 +1,4 @@
-import {  addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {  addDoc, collection, deleteDoc, doc, getDoc, getDocs, increment, setDoc, updateDoc } from "firebase/firestore";
 import db from "../configs/firebase";
 
 
@@ -33,3 +33,12 @@ export async function OrderArticles(articles, orderDetails){
     return await addDoc(orderCollection, {...orderDetails, articles: articles})
 }
 
+export async function IncrementArticleSalesOfCart(articlesInCart){
+    for (const article of articlesInCart) {
+        const ref = doc(db, "category", article.categoryId, "articles", article.id);
+    
+        await updateDoc(ref, {
+            numberOfSales: increment(1)
+        });
+    }
+}
