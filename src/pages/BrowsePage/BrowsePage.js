@@ -64,7 +64,6 @@ function BrowsePage() {
     }
 
     function OnFilterSelect(filter){
-        console.log(filter);
         dispatch(filterMap[filter]())
     }
 
@@ -73,7 +72,14 @@ function BrowsePage() {
             return (<FilterSelect filterName={filter.name}  options={filter.options} paramName={filter.propName}></FilterSelect>)
         })
     }
-
+    function GetMainCategory(){
+        for (const categoryData of categories) {
+            if (categoryData.categoryNames?.includes(category.name)){
+                return categoryData.name
+            }
+        }
+        return ""
+    }
 
     return (
         <main className='browse-page-main'>
@@ -82,8 +88,8 @@ function BrowsePage() {
             </div> */}
             <Breadcrumb className='bread-crumbs'>
                 <Breadcrumb.Item>Pocetna</Breadcrumb.Item>
-                <Breadcrumb.Item>Merni Instrumenti</Breadcrumb.Item>
-                <Breadcrumb.Item>Digitalni multimeri</Breadcrumb.Item>
+                <Breadcrumb.Item>{GetMainCategory()}</Breadcrumb.Item>
+                <Breadcrumb.Item>{category.name}</Breadcrumb.Item>
             </Breadcrumb>
             <div className='name-container'>
                 <div className='category-name'>

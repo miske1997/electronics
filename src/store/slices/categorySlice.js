@@ -22,13 +22,19 @@ export const categorySlice = createSlice({
     },
     setFilter: (state, action) => {
       let apended = false
+      let exist = false
       state.filterToApplay.forEach(filter => {
         if (filter.name === action.payload.name) {
-          filter.options.push(action.payload.value)
-          apended = true
+          if (filter.options.includes(action.payload.value)) {
+            exist = true
+          }
+          else {
+            filter.options.push(action.payload.value)
+            apended = true
+          }
         }
       })
-      if (!apended) {
+      if (!apended && !exist) {
         state.filterToApplay.push({
           name: action.payload.name,
           options: [action.payload.value]
@@ -78,11 +84,11 @@ export const selectCheckedFilters = (state) => state.category.filterToApplay
 export const selectArticles = (state) => {
   let articles = state.category.sortedArticles
   state.category.filterToApplay.forEach(filter => {
-      articles = articles.filter(article => {
-        if (!Object.hasOwn(article, filter.name))
-          return false
-        return filter.options.includes(article[filter.name])
-      })
+    articles = articles.filter(article => {
+      if (!Object.hasOwn(article, filter.name))
+        return false
+      return filter.options.includes(article[filter.name])
+    })
   });
   return articles
 }

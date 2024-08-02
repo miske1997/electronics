@@ -5,7 +5,8 @@
     height: 94%;
     top: 3%;
     background-color: #fff;
-    overflow-y: auto;
+    /* overflow-y: scroll;
+    overflow-x: visible; */
     box-shadow: 32px 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 

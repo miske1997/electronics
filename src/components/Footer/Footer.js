@@ -1,14 +1,22 @@
+import { useNavigate } from "react-router";
 import "./Footer.css"
 
 
 function Footer() {
+
+    const navigate = useNavigate();
+
+    function GoTo(url){
+        navigate(url);
+    }
+
     return (
         <div className="footer">
             <div className="info">
 
                 <div>
                     <h4>Pomoc</h4>
-                    <p>Uputstvo za kupovinu</p>
+                    <p onClick={() => GoTo("./UputstvoZaKupovinu")}>Uputstvo za kupovinu</p>
                     <p>Način isporuke</p>
                     <p>Način plaćanja</p>
                     <p>Garancija kvaliteta</p>
@@ -18,7 +26,7 @@ function Footer() {
                 <div>
                     <h4>Info</h4>
                     <p>O nama</p>
-                    <p>Privatnost podataka</p>
+                    <p onClick={() => GoTo("./privacy")}>Privatnost podataka</p>
                 </div>
                 <div>
                     <h4>Kontakt</h4>

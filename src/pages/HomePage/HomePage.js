@@ -8,6 +8,7 @@ import { selectCategories } from '../../store/slices/generalSlice';
 import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
 import { useNavigate } from 'react-router';
 import ZoomingImage from '../../components/Helpers/ZoomingImage/ZoomingImage';
+import CategorySelectHover from '../../components/CategorySelectHover/CategorySelectHover';
 
 
 function HomePage() {
@@ -26,7 +27,7 @@ function HomePage() {
 
             <ScrollingImage firstParagraphFirstRow='' secondParagraph='' picPositionPixels={-20} backgroundImageSource='https://www.nextpcb.com/uploads/images/202303/20/1679303211-0734-cavktR.jpg'>
                 <div className='category-container'>
-                    <CategorySelect onCategoryClick={OnCategoryClick} categories={categories}></CategorySelect>
+                    <CategorySelectHover onCategoryClick={OnCategoryClick} categories={categories}></CategorySelectHover>
                 </div>
                 <h1 className='hero-title' >ZeppaElectronika</h1>
                 <p className='hero-text'>Sed vel vestibulum dui, in pulvinar elit. Aenean vulputate ante orci, quis maximus diam vehicula malesuada. Ut a turpis efficitur, malesuada nibh a, elementum dolor.</p>

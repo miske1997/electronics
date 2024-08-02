@@ -12,13 +12,23 @@ function FilterSideBar({ filters = [] }) {
     const dispatch = useDispatch()
     const checkedFilters = useSelector(selectCheckedFilters)
     const url = new URL(window.location);
-    //const filterCurrent = url.searchParams.get(paramName) ?? "None"
+    const filterCurrent = url.searchParams
 
-    // useEffect(() => {
-    //   if (filterCurrent !== "None"){
-    //     dispatch(setFilter({name : paramName, value: filterCurrent}))
-    //   }
-    // }, [filterCurrent]);
+
+
+
+    useEffect(() => {
+        for (const entry of filterCurrent.entries()) {
+            if (entry[0] == "sort")
+                continue;
+            console.log(entry);
+            const values = entry[1].split("_")
+            const paramName = entry[0]
+            for (const value of values) {
+                dispatch(setFilter({ name: paramName, value: value }))
+            }
+        }
+    }, []);
 
 
     function AddUrlParam(option, paramName) {

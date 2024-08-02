@@ -11,6 +11,8 @@ import OrdersTable from './pages/AdminPanel/OrdersTable/OrdersPanel';
 import AboutPage from './pages/AboutUsPage/AboutPage';
 import AdminNav from './pages/AdminPanel/AdminNav/AdminNav';
 import Layout from './pages/Layout/Layout';
+import BuyInstructionsPage from './pages/Layout/BuyInstructionsPage/BuyInstructionsPage';
+import PrivacyPage from './pages/Layout/PrivacyPage/PrivacyPage';
 
 function App() {
   
@@ -25,6 +27,9 @@ function App() {
             <Route path="browse"  element={<BrowsePage />} ></Route>
             <Route path="cart" element={<CartPage/>}></Route>
             <Route path="about" element={<AboutPage/>}></Route>
+            <Route path="UputstvoZaKupovinu" element={<BuyInstructionsPage/>}></Route>
+            <Route path="privacy" element={<PrivacyPage/>}></Route>
+
           </Route>
 
           <Route path="/admin" element={<AdminNav/>}>

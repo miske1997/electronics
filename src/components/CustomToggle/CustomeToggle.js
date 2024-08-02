@@ -15,7 +15,7 @@ const CustomToggle = ({onValueChanged = () => {} }) =>{
     navigate(url.search)
   }
   return (
-    <DropdownButton id="dropdown-basic-button" title={
+    <DropdownButton className="dropdown-basic-button" title={
         <span>
           {`${filterCurrent}`} <FontAwesomeIcon icon={faFilter} />
         </span>
