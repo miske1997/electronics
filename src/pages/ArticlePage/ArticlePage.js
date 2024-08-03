@@ -50,7 +50,7 @@ function ArticlePage() {
     }
 
     function addToCart() {
-        dispatch(addArticleToCart({ ...article, imageSrc: "/chip.jpg", amount: amount, ...modifiers }))
+        dispatch(addArticleToCart({ ...article, imageSrc: "/chip.jpg", amount: amount, modifiers: modifiers }))
     }
     function removeFromCart() {
         dispatch(removeArticleFromCart(article.id ?? 0))
