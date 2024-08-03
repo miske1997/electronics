@@ -13,6 +13,7 @@ import AdminNav from './pages/AdminPanel/AdminNav/AdminNav';
 import Layout from './pages/Layout/Layout';
 import BuyInstructionsPage from './pages/Layout/BuyInstructionsPage/BuyInstructionsPage';
 import PrivacyPage from './pages/Layout/PrivacyPage/PrivacyPage';
+import ContactPage from './pages/Layout/ContactPage/ContactPage';
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
             <Route path="about" element={<AboutPage/>}></Route>
             <Route path="UputstvoZaKupovinu" element={<BuyInstructionsPage/>}></Route>
             <Route path="privacy" element={<PrivacyPage/>}></Route>
+            <Route path="contact" element={<ContactPage/>}></Route>
 
           </Route>
 

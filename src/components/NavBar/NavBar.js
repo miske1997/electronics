@@ -76,7 +76,7 @@ function NavBar() {
                                 {/* {RenderProducts()} */}
                             </NavDropdown>
                             <Nav.Link onClick={() => GoTo("/about")}>O Nama</Nav.Link>
-                            <Nav.Link onClick={() => GoTo("/about")}>Kontakt</Nav.Link>
+                            <Nav.Link onClick={() => GoTo("/contact")}>Kontakt</Nav.Link>
                             <Form className="d-flex">
                                 <Form.Control
                                     type="search"
