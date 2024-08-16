@@ -5,7 +5,6 @@ export function fetchGeneralData() {
     return async function fetchTodoByIdThunk(dispatch, getState) {
       
       const data = await GetMainCategorys()
-      console.log(data);
       dispatch(setCategories(data))
     }
   }
