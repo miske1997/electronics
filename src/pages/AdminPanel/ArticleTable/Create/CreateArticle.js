@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import ModifierAddModal from "./ModifierAddModal/ModifierAddModal";
+import { UploadImage } from "../../../../services/storageService";
 
 
 function CreateArticleModal({ article = null, show = false, onClose = () => { }, onCreate = () => { }, onSaveEdit = () => { }, filters = [] }) {
@@ -43,8 +44,17 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
         filters.forEach((filter, index) => data[filter.propName] = form[4 + index].value)
         return data
     }
+    async function GetImageUrl(url, file) {
+        if (url && url !== ""){
+            return url
+        }
+        if (file){
+            return await UploadImage(file)
+        }
+        return ""
+    }
 
-    function submit(event) {
+    async function submit(event) {
         let form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
@@ -53,12 +63,13 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
             description: form[1].value,
             specification: form[2].value,
             cost: form[3].value,
+            imageUrl: await GetImageUrl(form[4].value, form[5].files[0]),
             ...getFilterData(form),
             ...modifiers,
             buys: 0,
         }
         console.log(newArticle);
-        return
+        
         if (article)
             onSaveEdit(newArticle, article.id)
         else
@@ -72,9 +83,9 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
                 modifiersRenderd.push((
                     <div style={{ display: "flex" }}>
                         <p>{key}</p>
-                        <div style={{flexGrow: "1"}}></div>
-                        <Button onClick={() => {setModifierEdited({name: key, items: modifiers[key]}); handleShow()} }>Edit</Button>
-                        <Button onClick={() => setModifiers(mod => {delete mod[key]; return {...mod}})}>Delete</Button>
+                        <div style={{ flexGrow: "1" }}></div>
+                        <Button onClick={() => { setModifierEdited({ name: key, items: modifiers[key] }); handleShow() }}>Edit</Button>
+                        <Button onClick={() => setModifiers(mod => { delete mod[key]; return { ...mod } })}>Delete</Button>
                     </div>
                 ))
             }
@@ -108,6 +119,14 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
                     <Form.Group className="mb-3" controlId="formCost">
                         <Form.Label>Cost</Form.Label>
                         <Form.Control defaultValue={article !== null ? article.cost : ""} type="number" placeholder="0" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formImgUrl">
+                        <Form.Label>Image Url</Form.Label>
+                        <Form.Control type="text"/>
+                    </Form.Group>
+                    <Form.Group controlId="formImgFile" className="mb-3">
+                        <Form.Label>Image File</Form.Label>
+                        <Form.Control type="file" />
                     </Form.Group>
                     {RenderFilterFields()}
                     {RanderModifiers()}

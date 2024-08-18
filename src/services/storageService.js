@@ -1,3 +1,11 @@
-import storage from "../configs/firebase"
+import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
+import {storage} from "../configs/firebase"
 
-const imagesRef = ref(storage, 'images');
+
+
+export async function UploadImage(file){
+    const imageRef = storageRef(storage, `images/${file.name}`);
+    await uploadBytes(imageRef, file).then()
+    return await getDownloadURL(imageRef)
+    
+}

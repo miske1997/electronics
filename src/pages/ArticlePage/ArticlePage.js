@@ -123,7 +123,7 @@ function ArticlePage() {
                 </Row>
                 <Row className="article-top justify-content-center">
                     <Col className="article-image-con" xs={{ span: 10 }} sm={{ span: 10 }} md={{ span: 6 }}>
-                        <Image src="/chip.jpg" rounded></Image>
+                        <Image src={article.imageUrl ?? "/chip.jpg"} alt="/chip.jpg" rounded></Image>
                     </Col>
                     <Col className="article-description" xs={{ span: 10 }} md={{ span: 4 }}>
                         <h2 className="fs-1">
