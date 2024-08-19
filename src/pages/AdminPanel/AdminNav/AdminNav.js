@@ -28,6 +28,7 @@ function AdminNav() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
+                            <Nav.Link onClick={() => GoTo("/admin/main-categorys")}>Main Categorys</Nav.Link>
                             <Nav.Link onClick={() => GoTo("/admin")}>Categorys</Nav.Link>
                             <Nav.Link onClick={() => GoTo("/admin/orders")}>Orders</Nav.Link>
                         </Nav>

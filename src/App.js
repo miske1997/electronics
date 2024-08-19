@@ -14,6 +14,7 @@ import Layout from './pages/Layout/Layout';
 import BuyInstructionsPage from './pages/Layout/BuyInstructionsPage/BuyInstructionsPage';
 import PrivacyPage from './pages/Layout/PrivacyPage/PrivacyPage';
 import ContactPage from './pages/Layout/ContactPage/ContactPage';
+import MainCategoryTable from './pages/AdminPanel/MainCategoryTable/MainCategoryTable';
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
             <Route index element={<CategoryPage/>}></Route>
             <Route path=":categoryId" element={<ArticleTable/>}></Route>
             <Route path="orders" element={<OrdersTable/>}></Route>
+            <Route path="main-categorys" element={<MainCategoryTable/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
