@@ -95,7 +95,11 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
     function triggrSubmit() {
         submitBtnRef.current.click()
     }
-
+    function specificationOnChange(event){
+        const target = event.target
+        const value = target.value
+        target.value = value.split("\t").join(":    ")
+    }
     return (
         <Modal show={show} onHide={onClose}>
             <Modal.Header closeButton>
@@ -112,9 +116,9 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
                         <Form.Label>Description</Form.Label>
                         <Form.Control defaultValue={article !== null ? article.description : ""} as="textarea" rows={3} type="text" placeholder="Description" />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formSpecification">
+                    <Form.Group className="mb-3"  controlId="formSpecification">
                         <Form.Label>Specification</Form.Label>
-                        <Form.Control defaultValue={article !== null ? article.specification : ""} as="textarea" rows={3} type="text" placeholder="Specification" />
+                        <Form.Control style={{minHeight : "10rem"}} onChange={specificationOnChange} defaultValue={article !== null ? article.specification : ""} as="textarea" rows={3} type="text" placeholder="Specification" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formCost">
                         <Form.Label>Cost</Form.Label>
