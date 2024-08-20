@@ -52,6 +52,7 @@ function CreateCategory({filters = [], category = null, show = false, onClose = 
         const newCategory = {
             name: form[0].value,
             description: form[1].value,
+            mainCategory: category.mainCategory,
             buys: 0,
         }
         
@@ -64,9 +65,9 @@ function CreateCategory({filters = [], category = null, show = false, onClose = 
             return (
                 <Form.Group className="mb-3" controlId="main-categorys">
                     <Form.Label>Main Category</Form.Label>
-                    <Form.Select defaultValue={mainCategorys[0] ? mainCategorys[0].id : ""} id="main-categorys">
+                    <Form.Select defaultValue={category && category.mainCategory ? category.mainCategory.id : mainCategorys[0] ? mainCategorys[0].id : ""} id="main-categorys">
                         {mainCategorys.map(main => {
-                            return (<option value={main ? main.id : ""}>{main.name}</option>)
+                            return (<option selected={category && category.mainCategory && main && category.mainCategory.id === main.id} value={main ? main.id : ""}>{main.name}</option>)
                         })}
                     </Form.Select>
                 </Form.Group>

@@ -39,6 +39,9 @@ export async function GetCategory(categoryId){
 
 export async function CreateNewCategory(category, mainCategoryId, filters){
     const collectionRef = collection(db, "category")
+    const mainCategoryRef = doc(db, "general", mainCategoryId)
+    category.mainCategory = mainCategoryRef
+    console.log(category);
     const data = await addDoc(collectionRef, category)
     SetFiltersForCategory(data.id, filters)
     AddSubCategoryToMainCategory(mainCategoryId, data.id, category.name)
@@ -47,6 +50,12 @@ export async function CreateNewCategory(category, mainCategoryId, filters){
 
 export async function UpdateCategory(category,categoryId, mainId, filters){
     const categoryRef = doc(db, "category", categoryId)
+    if (mainId !== category.mainCategory.id){
+        RemoveSubCategoryFromMainCategory(category.mainCategory.id, categoryId, category.name)
+        AddSubCategoryToMainCategory(mainId, categoryId, category.name)
+        const mainCategoryRef = doc(db, "general", mainId)
+        category.mainCategory = mainCategoryRef
+    }
     const data = await setDoc(categoryRef, category)
     SetFiltersForCategory(categoryId, filters)
     return data
@@ -85,6 +94,17 @@ export async function AddSubCategoryToMainCategory(mainCategoryId,categoryId, ca
     }
     data.categoryNames.push(categortName)
     data.categorys.push(doc(db, "category", categoryId))
+
+    UpdateMainCategory(data, mainCategoryId)
+}
+
+export async function RemoveSubCategoryFromMainCategory(mainCategoryId,categoryId, categortName){
+    const categoryRef = doc(db, "general", mainCategoryId)
+    const mainCategory = await getDoc(categoryRef)
+    const data = mainCategory.data()
+    const index = data.categoryNames.find(name => name == categortName)
+    data.categoryNames.splice(index, 1)
+    data.categorys.splice(index, 1)
 
     UpdateMainCategory(data, mainCategoryId)
 }
