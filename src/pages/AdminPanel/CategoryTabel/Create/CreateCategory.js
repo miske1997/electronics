@@ -52,7 +52,7 @@ function CreateCategory({filters = [], category = null, show = false, onClose = 
         const newCategory = {
             name: form[0].value,
             description: form[1].value,
-            mainCategory: category.mainCategory,
+            mainCategory: category ? category.mainCategory : null,
             buys: 0,
         }
         

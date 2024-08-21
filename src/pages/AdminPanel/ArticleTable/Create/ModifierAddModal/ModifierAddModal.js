@@ -29,6 +29,21 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
 
     }, [modifier, show]);
 
+    function onInputChange(event){
+        const value = event.target.value
+        let fields = value.split("\n")
+        if (fields.length === 1)
+            return
+
+        fields = fields.map(element => {
+            return element.replace(/\ \(.*\)/,'');
+        });
+        fields.forEach(element => {
+            AddItem(element)
+        });
+        console.log(fields);
+    }
+
     function removeItem(value){
         console.log(value);
         console.log(items);
@@ -47,7 +62,7 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
     }
     function GetItemsData(form) {
         const modifiers = []
-        let i = 1
+        let i = 2
         while (form[i] && form[i].value) {
             if (form[i].value !== "")
                 modifiers.push(form[i].value)
@@ -64,10 +79,10 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
 
     }
 
-    function AddItem() {
+    function AddItem(value) {
         setItems(items => [...items, (
             <FormGroup key={items.index} style={{ position: "relative" }}>
-                <Form.Control className="mb-3" type="text">
+                <Form.Control defaultValue={value ?? ""} className="mb-3" type="text">
                 </Form.Control>
                 <FontAwesomeIcon onClick={(event) => removeItem(event.target.parentElement)} style={{ position: "absolute", right: "1rem", top: "10px" }} icon={faX}></FontAwesomeIcon>
             </FormGroup>
@@ -84,6 +99,10 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
                     <Form.Group className="mb-3" controlId="formName">
                         <Form.Label>Name</Form.Label>
                         <Form.Control defaultValue={modifier !== null ? modifier.name : ""} type="text" placeholder="Name" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formDescription">
+                        <Form.Label>Paste Input</Form.Label>
+                        <Form.Control onChange={onInputChange} as="textarea" rows={3} type="text" placeholder="Paste" />
                     </Form.Group>
                     <div style={{ maxHeight: "70vh", overflow: "auto" }}>
                         {items}
