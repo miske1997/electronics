@@ -10,18 +10,10 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
     const formRef = useRef()
 
     const [items, setItems] = useState([])
-    
+
     useEffect(() => {
         if (modifier) {
-            setItems(modifier.items.map((value, index) => {
-                return (
-                    <FormGroup style={{ position: "relative" }}>
-                        <Form.Control defaultValue={value} className="mb-3" type="text">
-                        </Form.Control>
-                        <FontAwesomeIcon onClick={(event) => removeItem(event)} style={{ position: "absolute", right: "1rem", top: "10px" }} icon={faX}></FontAwesomeIcon>
-                    </FormGroup>
-                )
-            }))
+            setItems(modifier.items.map((value, index) => value))
         }
         else {
             setItems([])
@@ -29,14 +21,14 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
 
     }, [modifier, show]);
 
-    function onInputChange(event){
+    function onInputChange(event) {
         const value = event.target.value
         let fields = value.split("\n")
         if (fields.length === 1)
             return
 
         fields = fields.map(element => {
-            return element.replace(/\ \(.*\)/,'');
+            return element.replace(/\ \(.*\)/, '');
         });
         fields.forEach(element => {
             AddItem(element)
@@ -44,17 +36,13 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
         console.log(fields);
     }
 
-    function removeItem(value){
-        console.log(value);
+    function removeItem(index) {
         console.log(items);
-        return
-        const index = items.find(el => {
-            console.log(el);
-            return el === value})
         console.log(index);
+        
         items.splice(index, 1)
         console.log(items);
-        setItems(items)
+        setItems([...items])
     }
 
     function triggrSubmit() {
@@ -80,15 +68,24 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
     }
 
     function AddItem(value) {
-        setItems(items => [...items, (
-            <FormGroup key={items.index} style={{ position: "relative" }}>
-                <Form.Control defaultValue={value ?? ""} className="mb-3" type="text">
-                </Form.Control>
-                <FontAwesomeIcon onClick={(event) => removeItem(event.target.parentElement)} style={{ position: "absolute", right: "1rem", top: "10px" }} icon={faX}></FontAwesomeIcon>
-            </FormGroup>
-        )])
+        setItems(items => [...items, ""])
     }
-    
+    function onInputChange(event, index) {
+        items[index] = event.target.value
+        setItems([...items])
+    }
+    function renderControls() {
+        return items.map((item, index) => {
+            return (
+                <FormGroup style={{ position: "relative" }}>
+                    <Form.Control onChange={(event) => onInputChange(event, index)} value={item ?? ""} className="mb-3" type="text">
+                    </Form.Control>
+                    <FontAwesomeIcon onClick={(event) => removeItem(index)} style={{ position: "absolute", right: "1rem", top: "10px" }} icon={faX}></FontAwesomeIcon>
+                </FormGroup>
+            )
+        })
+    }
+
     return (
         <Modal show={show} onHide={onClose}>
             <Modal.Header closeButton>
@@ -105,7 +102,7 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
                         <Form.Control onChange={onInputChange} as="textarea" rows={3} type="text" placeholder="Paste" />
                     </Form.Group>
                     <div style={{ maxHeight: "70vh", overflow: "auto" }}>
-                        {items}
+                        {renderControls()}
                     </div>
                     <FormGroup ref={formRef}>
                     </FormGroup>
