@@ -35,12 +35,20 @@ function MainCategoryTable() {
                 categorys.push({ ...category, id: category.id })
                 return categorys
             })
+            alert("Ubaceno")
             handleClose()
+        }).catch(err => {
+            console.log(err)
+            alert("Nije se lepo ubacilo")
         })
     }
     function onEdit(category, id){
         UpdateMainCategory(category, id).then(data => {
+            alert("Ubaceno")
             handleClose()
+        }).catch(err => {
+            console.log(err)
+            alert("Nije se lepo ubacilo")
         })
     }
     function renderData() {

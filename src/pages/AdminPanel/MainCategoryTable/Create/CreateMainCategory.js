@@ -24,7 +24,7 @@ function CreateMainCategory({filters = [], category = null, show = false, onClos
         submitBtnRef.current.click()
     }
     return ( 
-        <Modal show={show} onHide={onClose}>
+        <Modal backdrop="static" show={show} onHide={onClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Create Main Category</Modal.Title>
             </Modal.Header>

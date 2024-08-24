@@ -95,7 +95,7 @@ function CreateCategory({filters = [], category = null, show = false, onClose = 
         submitBtnRef.current.click()
     }
     return ( 
-        <Modal show={show} onHide={onClose}>
+        <Modal backdrop="static" show={show} onHide={onClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Create Category</Modal.Title>
             </Modal.Header>

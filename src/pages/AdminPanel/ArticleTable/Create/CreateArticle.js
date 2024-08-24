@@ -101,7 +101,7 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
         target.value = value.split("\t").join(":    ")
     }
     return (
-        <Modal show={show} onHide={onClose}>
+        <Modal backdrop="static" show={show} onHide={onClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Create Article</Modal.Title>
             </Modal.Header>

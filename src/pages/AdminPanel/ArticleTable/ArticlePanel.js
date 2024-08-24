@@ -62,6 +62,10 @@ function ArticleTable() {
                 return articles
             })
             handleClose()
+            alert("Ubaceno")
+        }).catch(err => {
+            console.log(err)
+            alert("Nije se lepo ubacilo")
         })
     }
 
@@ -73,7 +77,12 @@ function ArticleTable() {
     function onSaveEdit(article, id) {
         UpdateArticle(article, categoryId, id).then(data => {
             handleClose()
+            alert("Ubaceno")
+            
             console.log(data);
+        }).catch(err => {
+            console.log(err)
+            alert("Nije se lepo ubacilo")
         })
     }
 

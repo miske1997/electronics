@@ -84,8 +84,9 @@ function NavBar() {
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                                <Button variant="outline-success">Search</Button>
                             </Form>
+                            <Button className="me-2" variant='outline-primary'>Sing In</Button>
+                            <Button className="me-2">Log In</Button>
                             <Nav.Link onClick={() => setShowSideCart(true)}>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                             </Nav.Link>

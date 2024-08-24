@@ -63,13 +63,21 @@ function CategoryPage() {
                 categorys.push({ ...data, id: data.id })
                 return categorys
             })
+            alert("Ubaceno")
             handleClose()
+        }).catch(err => {
+            console.log(err)
+            alert("Nije se lepo ubacilo")
         })
     }
     function onEdit(category, id, mainId, filters){
         console.log(filters);
         UpdateCategory(category, id, mainId, filters).then(data => {
+            alert("Ubaceno")
             handleClose()
+        }).catch(err => {
+            console.log(err)
+            alert("Nije se lepo ubacilo")
         })
     }
     function onArticlesClick(categoryName) {
