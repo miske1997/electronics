@@ -66,6 +66,7 @@ function NavBar() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
+                            <Nav.Link onClick={() => GoTo("/admin")}>Admin</Nav.Link>
                             <Nav.Link onClick={() => GoTo("/")}>Naslovna</Nav.Link>
                             <NavDropdown
                                 ref={productsDropdownRef}

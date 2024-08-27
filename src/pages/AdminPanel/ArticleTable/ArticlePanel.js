@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faPlus, faSearch, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import CreateArticleModal from "./Create/CreateArticle";
 import { GetFiltersForCategory } from "../../../services/categoryService";
+import ConfirmationPopup from "../ConfirmationPopup/ConfirmationPopup";
 
 function ArticleTable() {
 
@@ -15,6 +16,16 @@ function ArticleTable() {
     const [selectedArticle, setSelectedArticle] = useState(null)
     let { categoryId } = useParams();
     const [show, setShow] = useState(false);
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
+    const handleShowConfirmation = (id) => {
+        setShowConfirmation(true)
+        setSelectedArticle({id})
+    }
+    const handleHideConfirmation = () => {
+        setSelectedArticle(null)
+        setShowConfirmation(false)
+    }
 
     const handleClose = () => {
         setSelectedArticle(null)
@@ -44,7 +55,7 @@ function ArticleTable() {
                 <td>{data.type}</td>
                 <td>{data.buys}</td>
                 <td>
-                    <Button onClick={() => onDeleteArticle(data.id)}>
+                    <Button onClick={() => handleShowConfirmation(data.id)}>
                         <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
                     </Button>
                     <Button onClick={() => onEditArticle(data)}>
@@ -89,11 +100,17 @@ function ArticleTable() {
     function onDeleteArticle(articleId) {
         DeleteArticle(categoryId, articleId).then(data => {
             setArticleData(articles => articles.filter(article => article.id !== articleId))
+            handleHideConfirmation()
+        })
+        .catch(err => {
+            console.log(err);
+
         })
     }
     return (
         <>
             <CreateArticleModal article={selectedArticle} onSaveEdit={onSaveEdit} onCreate={onCreateArticle} filters={categoryFilters} show={show} onClose={handleClose} />
+            <ConfirmationPopup show={showConfirmation} header="Delete Article" text="Are you sure you want to delete that article" onConfirm={() => onDeleteArticle(selectedArticle.id)} onCancle={handleHideConfirmation}></ConfirmationPopup>
             <Container>
                 <Row className="header" lg={20}>
                     <Col md={4} className="search-form">
