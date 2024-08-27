@@ -21,7 +21,7 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
 
     }, [modifier, show]);
 
-    function onInputChange(event) {
+    function onPaste(event) {
         const value = event.target.value
         let fields = value.split("\n")
         if (fields.length === 1)
@@ -68,7 +68,7 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
     }
 
     function AddItem(value) {
-        setItems(items => [...items, ""])
+        setItems(items => [...items, value ?? ""])
     }
     function onInputChange(event, index) {
         items[index] = event.target.value
@@ -99,14 +99,14 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formDescription">
                         <Form.Label>Paste Input</Form.Label>
-                        <Form.Control onChange={onInputChange} as="textarea" rows={3} type="text" placeholder="Paste" />
+                        <Form.Control onChange={onPaste} as="textarea" rows={3} type="text" placeholder="Paste" />
                     </Form.Group>
                     <div style={{ maxHeight: "70vh", overflow: "auto" }}>
                         {renderControls()}
                     </div>
                     <FormGroup ref={formRef}>
                     </FormGroup>
-                    <Button onClick={AddItem}>Add Item</Button>
+                    <Button onClick={() => AddItem()}>Add Item</Button>
                     <button ref={submitBtnRef} style={{ display: "none" }} variant="primary" type="submit" />
                 </Form>
             </Modal.Body>
