@@ -30,7 +30,7 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
                     <Form.Label>{filter.name}</Form.Label>
                     <Form.Select defaultValue={article !== null ? article[filter.name] : filter.options[0] ?? ""} id={filter.name}>
                         {filter.options.map(option => {
-                            return (<option>{option}</option>)
+                            return (<option value={option}>{option}</option>)
                         })}
                     </Form.Select>
                 </Form.Group>
@@ -41,7 +41,8 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
 
     function getFilterData(form) {
         let data = {}
-        filters.forEach((filter, index) => data[filter.propName] = form[4 + index].value)
+        filters.forEach((filter, index) => data[filter.propName] = form[6 + index].value)
+        console.log(data);
         return data
     }
     async function GetImageUrl(url, file) {

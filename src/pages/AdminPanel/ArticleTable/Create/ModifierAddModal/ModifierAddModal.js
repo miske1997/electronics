@@ -62,7 +62,7 @@ function ModifierAddModal({ show = false, modifier = null, onAdd = () => { }, on
         let form = event.currentTarget;
         event.preventDefault();
         event.stopPropagation();
-        let modifier = { name: form[0].value, items: GetItemsData(form) }
+        let modifier = { name:  form[0].value.trim(), items: GetItemsData(form) }
         onAdd(modifier)
 
     }
