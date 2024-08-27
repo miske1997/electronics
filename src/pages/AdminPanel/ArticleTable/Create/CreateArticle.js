@@ -28,7 +28,7 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
             return (
                 <Form.Group className="mb-3" controlId={filter.name}>
                     <Form.Label>{filter.name}</Form.Label>
-                    <Form.Select defaultValue={article !== null ? article[filter.name] : filter.options[0] ?? ""} id={filter.name}>
+                    <Form.Select defaultValue={article !== null ? article[filter.propName] : filter.options[0] ?? ""} id={filter.name}>
                         {filter.options.map(option => {
                             return (<option value={option}>{option}</option>)
                         })}
