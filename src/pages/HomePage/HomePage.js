@@ -4,17 +4,23 @@ import Carousel from '../../components/Carousel/Carousel';
 import PopularCard from '../../components/PopularCard/PopularCard';
 import CategorySelect from '../../components/CategorySelect/CategorySelect';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCategories } from '../../store/slices/generalSlice';
-import { fetchCategoryArticlesById, fetchFiltersForCategory } from '../../store/effects/categoryEffects';
+import { selectCategories, selectPopularCategories } from '../../store/slices/generalSlice';
+import { fetchCategoryArticlesById, fetchFiltersForCategory, fetchPopularCategorys } from '../../store/effects/categoryEffects';
 import { useNavigate } from 'react-router';
 import ZoomingImage from '../../components/Helpers/ZoomingImage/ZoomingImage';
 import CategorySelectHover from '../../components/CategorySelectHover/CategorySelectHover';
+import { useEffect } from 'react';
 
 
 function HomePage() {
     const categories = useSelector(selectCategories);
+    const popularCategoryes = useSelector(selectPopularCategories);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchPopularCategorys)
+    }, []);
 
     function OnCategoryClick(categorieRef) {
         dispatch(fetchCategoryArticlesById(categorieRef))
