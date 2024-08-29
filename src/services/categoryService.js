@@ -125,7 +125,7 @@ export async function IncrementCategorySalesForCart(articlesInCart){
 export async function GetPopularCategorys(){
     const categorysRef  = collection(db, "category");
 
-    const q = query(categorysRef, orderBy("numberOfSales", "desc"), limit(1));
+    const q = query(categorysRef, orderBy("buys", "desc"), limit(1));
 
     const querySnapshot = await getDocs(q)
 

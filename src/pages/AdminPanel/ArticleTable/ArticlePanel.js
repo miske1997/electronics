@@ -1,5 +1,5 @@
 import "./ArticlePanel.css"
-import { Button, Col, Container, Form, FormControl, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { CreateArticle, DeleteArticle, GetAllArticlesForCategory, UpdateArticle } from "../../../services/articleService";
@@ -12,11 +12,16 @@ import ConfirmationPopup from "../ConfirmationPopup/ConfirmationPopup";
 function ArticleTable() {
 
     const [articleData, setArticleData] = useState([])
+    const [displayArticleData, setDisplayArticleData] = useState([])
     const [categoryFilters, setFilters] = useState([])
     const [selectedArticle, setSelectedArticle] = useState(null)
     let { categoryId } = useParams();
     const [show, setShow] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
+
+    useEffect(() => {
+        setDisplayArticleData(articleData)
+    }, [articleData]);
 
     const handleShowConfirmation = (id) => {
         setShowConfirmation(true)
@@ -41,13 +46,13 @@ function ArticleTable() {
         GetFiltersForCategory(categoryId).then(data => {
             setFilters(data)
         })
-    }, []);
+    }, [categoryId]);
 
     function renderData() {
         if (!articleData || articleData.length === 0) {
             return
         }
-        return articleData.map((data, index) => (
+        return displayArticleData.map((data, index) => (
             <tr>
                 <td>{index}</td>
                 <td>{data.name}</td>
@@ -107,6 +112,10 @@ function ArticleTable() {
 
         })
     }
+    function SearchInputChanged(event){
+        if (event.code === "Enter")
+        setDisplayArticleData(articleData.filter(data => data.name.toLowerCase().includes(event.target.value)))
+    }
     return (
         <>
             <CreateArticleModal article={selectedArticle} onSaveEdit={onSaveEdit} onCreate={onCreateArticle} filters={categoryFilters} show={show} onClose={handleClose} />
@@ -114,7 +123,7 @@ function ArticleTable() {
             <Container>
                 <Row className="header" lg={20}>
                     <Col md={4} className="search-form">
-                        <Form.Control />
+                        <Form.Control onKeyUp={SearchInputChanged}/>
                         <FontAwesomeIcon onClick={() => console.log("search")} className="search-button" icon={faSearch}></FontAwesomeIcon>
                     </Col>
                     <Col md={{ span: 2, offset: 6 }}>

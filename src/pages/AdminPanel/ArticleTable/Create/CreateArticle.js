@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import ModifierAddModal from "./ModifierAddModal/ModifierAddModal";
 import { UploadImage } from "../../../../services/storageService";
@@ -10,6 +10,16 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
     const [showModal, setShow] = useState(false);
     const [modifiers, setModifiers] = useState({});
     const [modifierEdited, setModifierEdited] = useState(null);
+
+    useEffect(() => {
+        setModifiers({})
+        if (!article)
+            return
+
+        getModifiers().forEach(modifier => {
+            setModifiers(modifiers => { return { ...modifiers, [modifier.name]: modifier.values } })
+        });
+    }, [article, show]);
 
     const handleClose = () => {
         setModifierEdited(null)
@@ -76,11 +86,19 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
         else
             onCreate(newArticle)
     }
+    function getModifiers() {
+        let modifierArray = []
+        for (const key in article) {
+            if (Object.hasOwnProperty.call(article, key) && Array.isArray(article[key])) {
+                modifierArray.push({ name: key, values: article[key] })
+            }
+        }
+        return modifierArray
+    }
     function RanderModifiers() {
         const modifiersRenderd = []
         for (const key in modifiers) {
             if (Object.hasOwnProperty.call(modifiers, key)) {
-                const modifier = modifiers[key];
                 modifiersRenderd.push((
                     <div style={{ display: "flex" }}>
                         <p>{key}</p>
