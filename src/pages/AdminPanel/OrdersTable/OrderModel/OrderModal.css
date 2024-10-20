@@ -1,0 +1,10 @@
+.order-modal .modal-dialog{
+    width: 50vw;
+    max-width: 100vw;
+}
+
+@media screen and (max-width: 600px) {
+    .order-modal .modal-dialog{
+        width: 95vw;
+    }
+}

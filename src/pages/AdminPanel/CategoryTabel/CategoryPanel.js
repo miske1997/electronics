@@ -12,6 +12,7 @@ function CategoryPage() {
     const [categortData, setCategoryData] = useState([])
     const [show, setShow] = useState(false);
     const [categoryFilters, setFilters] = useState([]);
+    const [displayCategoryData, setDisplayCategoryData] = useState([])
     const [selectedCategory, setSelectedCategory] = useState(null)
     const navigate = useNavigate()
 
@@ -23,6 +24,10 @@ function CategoryPage() {
     const handleShow = () => {
         setShow(true);
     }
+
+    useEffect(() => {
+        setDisplayCategoryData(categortData)
+    }, [categortData]);
 
     useEffect(() => {
         GetAllCategorys().then(data => {
@@ -41,8 +46,7 @@ function CategoryPage() {
         if (!categortData || categortData.length === 0) {
             return
         }
-        console.log(categortData);
-        return categortData.map((data, index) => (
+        return displayCategoryData.map((data, index) => (
             <tr>
                 <td>{index}</td>
                 <td>{data.name}</td>
@@ -81,7 +85,11 @@ function CategoryPage() {
         })
     }
     function onArticlesClick(categoryName) {
-        navigate(`/admin/${categoryName}`)
+        navigate(`/${categoryName}`)
+    }
+    function SearchInputChanged(event){
+        if (event.code === "Enter")
+        setDisplayCategoryData(categortData.filter(data => data.name.toLowerCase().includes(event.target.value.toLowerCase())))
     }
 
     return (
@@ -90,7 +98,7 @@ function CategoryPage() {
             <Container className="category-panel">
                 <Row className="header" lg={20}>
                     <Col md={4} className="search-form">
-                        <Form.Control />
+                        <Form.Control onKeyUp={SearchInputChanged}/>
                         <FontAwesomeIcon onClick={() => console.log("search")} className="search-button" icon={faSearch}></FontAwesomeIcon>
                     </Col>
                     <Col md={{ span: 2, offset: 6 }}>
@@ -105,8 +113,8 @@ function CategoryPage() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Articles</th>
+                                    <th>Ime</th>
+                                    <th>Artikli</th>
                                 </tr>
                             </thead>
                             <tbody>

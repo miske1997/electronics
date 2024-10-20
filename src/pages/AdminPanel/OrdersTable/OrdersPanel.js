@@ -44,8 +44,12 @@ function OrdersTable() {
                     <td>{data.email}</td>
                     <td>
                         <Button onClick={() => onDisplayArticlesOfOrder(data)}>
-                            See Articles In Order
-                            <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+                            Artikli u Narudzbini
+                        </Button>
+                    </td>
+                    <td>
+                        <Button >
+                            Racun
                         </Button>
                     </td>
                 </tr>
@@ -83,7 +87,7 @@ function OrdersTable() {
                         onChange={OrderTypeChanged}
                         defaultChecked="true"
                         value="Pending"
-                        label="Pending"
+                        label="Ne Obradjene"
                         name="group1"
                         type="radio"
                         id={`inline-radio-1`}
@@ -92,7 +96,7 @@ function OrdersTable() {
                         inline
                         onChange={OrderTypeChanged}
                         value="Completed"
-                        label="Completed"
+                        label="Obradjene"
                         name="group1"
                         type="radio"
                         id={`inline-radio-2`}
@@ -102,7 +106,7 @@ function OrdersTable() {
                         onChange={OrderTypeChanged}
                         value="All"
                         name="group1"
-                        label="All"
+                        label="Sve"
                         type="radio"
                         id={`inline-radio-3`}
                     />
@@ -113,11 +117,11 @@ function OrdersTable() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Addres</th>
+                                    <th>Ime</th>
+                                    <th>Adresa</th>
                                     <th>Zip</th>
-                                    <th>State</th>
-                                    <th>City</th>
+                                    <th>Drzava</th>
+                                    <th>Grad</th>
                                     <th>Email</th>
                                 </tr>
                             </thead>

@@ -128,19 +128,19 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
                 <ModifierAddModal modifier={modifierEdited} onAdd={AddModifier} show={showModal} onClose={handleClose} ></ModifierAddModal>
                 <Form onSubmit={submit} >
                     <Form.Group className="mb-3" controlId="formName">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label>Ime</Form.Label>
                         <Form.Control defaultValue={article !== null ? article.name : ""} type="text" placeholder="Name" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formDescription">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>Deskripcija</Form.Label>
                         <Form.Control defaultValue={article !== null ? article.description : ""} as="textarea" rows={3} type="text" placeholder="Description" />
                     </Form.Group>
                     <Form.Group className="mb-3"  controlId="formSpecification">
-                        <Form.Label>Specification</Form.Label>
+                        <Form.Label>Specifikacija</Form.Label>
                         <Form.Control style={{minHeight : "10rem"}} onChange={specificationOnChange} defaultValue={article !== null ? article.specification : ""} as="textarea" rows={3} type="text" placeholder="Specification" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formCost">
-                        <Form.Label>Cost</Form.Label>
+                        <Form.Label>Cena</Form.Label>
                         <Form.Control defaultValue={article !== null ? article.cost : ""} type="number" placeholder="0" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formImgUrl">

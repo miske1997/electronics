@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/*"  element={<Layout/>} >
+          {/* <Route path="/*"  element={<Layout/>} >
             <Route index element={<HomePage/> }></Route>
             <Route path="article/:categoryId/:id" element={<ArticlePage/>} ></Route>
             <Route path="browse/:categoryId/*" element={<BrowsePage />} ></Route>
@@ -33,9 +33,9 @@ function App() {
             <Route path="privacy" element={<PrivacyPage/>}></Route>
             <Route path="contact" element={<ContactPage/>}></Route>
 
-          </Route>
+          </Route> */}
 
-          <Route path="/admin" element={<AdminNav/>}>
+          <Route path="/*" element={<AdminNav/>}>
             <Route index element={<CategoryPage/>}></Route>
             <Route path=":categoryId" element={<ArticleTable/>}></Route>
             <Route path="orders" element={<OrdersTable/>}></Route>

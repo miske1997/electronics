@@ -1,6 +1,6 @@
 import { Button, ListGroup, Modal, Stack } from "react-bootstrap";
 import CartItem from "../../../../components/CartItem/CartItem";
-
+import "./OrderModal.css"
 
 function OrderModal({ show = false, onClose = () => {}, triggrSubmit = () => { }, order = { name: "", articles: [], completed: false } }) {
 
@@ -18,7 +18,7 @@ function OrderModal({ show = false, onClose = () => {}, triggrSubmit = () => { }
     }
 
     return (
-        <Modal show={show} onHide={onClose}>
+        <Modal className="order-modal" show={show} onHide={onClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Order Details</Modal.Title>
             </Modal.Header>

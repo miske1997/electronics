@@ -9,6 +9,7 @@ function MainCategoryTable() {
 
     const [categortData, setCategoryData] = useState([])
     const [show, setShow] = useState(false);
+    const [displayCategoryData, setDisplayCategoryData] = useState([])
     const [selectedCategory, setSelectedCategory] = useState(null)
 
     const handleClose = () => {
@@ -18,7 +19,10 @@ function MainCategoryTable() {
     const handleShow = () => {
         setShow(true);
     }
-
+    useEffect(() => {
+        setDisplayCategoryData(categortData)
+    }, [categortData]);
+    
     useEffect(() => {
         GetMainCategorys().then(data => {
             setCategoryData(data)
@@ -55,8 +59,7 @@ function MainCategoryTable() {
         if (!categortData || categortData.length === 0) {
             return
         }
-        console.log(categortData);
-        return categortData.map((data, index) => (
+        return displayCategoryData.map((data, index) => (
             <tr>
                 <td>{index}</td>
                 <td>{data.name}</td>
@@ -68,6 +71,10 @@ function MainCategoryTable() {
             </tr>
         ))
     }
+    function SearchInputChanged(event){
+        if (event.code === "Enter")
+        setDisplayCategoryData(categortData.filter(data => data.name.toLowerCase().includes(event.target.value.toLowerCase())))
+    }
 
     return (
         <>
@@ -75,7 +82,7 @@ function MainCategoryTable() {
             <Container className="category-panel">
                 <Row className="header" lg={20}>
                     <Col md={4} className="search-form">
-                        <Form.Control />
+                        <Form.Control onKeyUp={SearchInputChanged}/>
                         <FontAwesomeIcon onClick={() => console.log("search")} className="search-button" icon={faSearch}></FontAwesomeIcon>
                     </Col>
                     <Col md={{ span: 2, offset: 6 }}>
@@ -90,7 +97,7 @@ function MainCategoryTable() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Ime</th>
                                     <th></th>
                                 </tr>
                             </thead>

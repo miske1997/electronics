@@ -57,9 +57,8 @@ function ArticleTable() {
                 <td>{index}</td>
                 <td>{data.name}</td>
                 <td>{data.cost}</td>
-                <td>{data.type}</td>
                 <td>{data.buys}</td>
-                <td>
+                <td className="actions">
                     <Button onClick={() => handleShowConfirmation(data.id)}>
                         <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
                     </Button>
@@ -114,13 +113,13 @@ function ArticleTable() {
     }
     function SearchInputChanged(event){
         if (event.code === "Enter")
-        setDisplayArticleData(articleData.filter(data => data.name.toLowerCase().includes(event.target.value)))
+        setDisplayArticleData(articleData.filter(data => data.name.toLowerCase().includes(event.target.value.toLowerCase())))
     }
     return (
         <>
             <CreateArticleModal article={selectedArticle} onSaveEdit={onSaveEdit} onCreate={onCreateArticle} filters={categoryFilters} show={show} onClose={handleClose} />
             <ConfirmationPopup show={showConfirmation} header="Delete Article" text="Are you sure you want to delete that article" onConfirm={() => onDeleteArticle(selectedArticle.id)} onCancle={handleHideConfirmation}></ConfirmationPopup>
-            <Container>
+            <Container className="articles-panel">
                 <Row className="header" lg={20}>
                     <Col md={4} className="search-form">
                         <Form.Control onKeyUp={SearchInputChanged}/>
@@ -148,11 +147,10 @@ function ArticleTable() {
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Cost</th>
-                                    <th>Type</th>
-                                    <th>Buys</th>
-                                    <th>Actions</th>
+                                    <th>Ime</th>
+                                    <th>Cena</th>
+                                    <th>Kupljeno</th>
+                                    <th>Akcije</th>
                                 </tr>
                             </thead>
                             <tbody>

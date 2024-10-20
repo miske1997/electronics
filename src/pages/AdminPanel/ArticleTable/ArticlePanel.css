@@ -1,4 +1,6 @@
-
+.articles-panel{
+    padding-top: 3rem;
+}
 
 .header{
     margin-bottom: 1rem;
@@ -14,4 +16,11 @@
     right: 0;
     top: 50%;
     translate: -110% -50%;
+}
+
+.actions{
+    display: flex;
+    gap: 0.7rem;
+    width: 100%;
+    justify-content: center;
 }
