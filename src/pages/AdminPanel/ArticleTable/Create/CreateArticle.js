@@ -145,7 +145,7 @@ function CreateArticleModal({ article = null, show = false, onClose = () => { },
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formImgUrl">
                         <Form.Label>Image Url</Form.Label>
-                        <Form.Control type="text"/>
+                        <Form.Control defaultValue={article !== null ? article.imageUrl : ""} type="text"/>
                     </Form.Group>
                     <Form.Group controlId="formImgFile" className="mb-3">
                         <Form.Label>Image File</Form.Label>
